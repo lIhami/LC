@@ -82,31 +82,14 @@ UICollectionViewDelegate
 #pragma mark - 网络请求
 - (void)getDataFromJson1 {
     
-//    NSDate *datenow =[NSDate date];//现在时间
-//    NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//    NSInteger interval = [zone secondsFromGMTForDate:datenow];
-//    NSDate *localeDate = [datenow  dateByAddingTimeInterval: interval];
-//    NSString *timeStamp = [NSString stringWithFormat:@"%ld", (long)[localeDate timeIntervalSince1970]];
-//    
     
-    NSString *userStr =@"uuid=50800CF6-E005-4DD5-8B81-937C7C1A6074&version=19&screenwidth=375.000000&screenheight=667.000000&time=1474722574&api_version=v2.0.0&lat=38.882700&lng=121.539460&os_version=9.3.2&network=1&os_type=2&carrier=46007";
-    
-//    NSLog( @"%@", timeStamp);
-    
-    NSDictionary *headerDic = @{@"Host":@"v20.tp.wkread.com",
-                                @"Cookie": @"PHPSESSID=tesjd4lu5fqn4lo6usga9d7ic2",
-                                @"Connection": @"keep-alive",
-                                @" X-Device-Info": userStr,
-                                @"User-Agent": @"vKan/1.9.6 (iPhone; iOS 10.0.1; Scale/2.00)",
-                                @"Accept-Language": @"zh-Hans-CN;q=1, en-CN;q=0.9, ja-JP;q=0.8",
-                                @"Token": @"A0UAP9AV5AHCRAHB",
-                                @"Accept-Encoding": @"gzip, deflate"};
+    NSDictionary *headerDic = @{@"Token": @"MMDRAPHUC3UOEB52"};
     
     NSString *url = @"http://v20.wkread.com/api.php/home/special";
     
     
     [BHNetTool GET:url Body:nil HeaderFile:headerDic Response:BHJSON Success:^(id result) {
-                        NSLog(@"%@", result);
+//                        NSLog(@"%@", result);
         
         self.arrHot_list = [NSArray array];
         
@@ -115,7 +98,7 @@ UICollectionViewDelegate
         NSDictionary *arrData = [dic objectForKey:@"data"];
         _arrHot_list = [arrData objectForKey:@"hot_list"];
         
-        NSLog(@"%ld", _arrHot_list.count);
+//        NSLog(@"%ld", _arrHot_list.count);
  
     } Failure:^(NSError *error) {
 //        NSLog(@"%@", error);

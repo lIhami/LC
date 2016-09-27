@@ -35,7 +35,7 @@ UICollectionViewDelegate
     discoverFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
     UICollectionView *discoverCollectionView = [[UICollectionView alloc] initWithFrame:SCREEN_RECT collectionViewLayout:discoverFlowLayout];
-    discoverCollectionView.backgroundColor = [UIColor cyanColor];
+    discoverCollectionView.backgroundColor = [UIColor whiteColor];
     discoverCollectionView.delegate = self;
     discoverCollectionView.dataSource = self;
     [self.view addSubview:discoverCollectionView];
@@ -62,7 +62,7 @@ UICollectionViewDelegate
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     LCDiscoverCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:discoverCell forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+//    cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
     
