@@ -10,13 +10,13 @@
 
 @interface LCMagazineNew : NSObject
 
-@property (nonatomic, copy)NSString *magNewTitle;
+@property (nonatomic, copy)NSString *title;
 
-@property (nonatomic, copy)NSString *magNewDesc;
+@property (nonatomic, copy)NSString *description;
 
-@property (nonatomic, assign)NSInteger *magNewArticleCount;
+@property (nonatomic, assign)NSInteger *article_count;
 
-@property (nonatomic, assign)NSInteger *magNewSubscribeCount;
+@property (nonatomic, assign)NSInteger *subscribe_count;
 
 + (LCMagazineNew *)magazineWithMagazineDic:(NSDictionary *)magazineDic;
 

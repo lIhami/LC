@@ -83,13 +83,13 @@ UICollectionViewDelegate
 - (void)getDataFromJson1 {
     
     
-    NSDictionary *headerDic = @{@"Token": @"MMDRAPHUC3UOEB52"};
+    NSDictionary *headerDic = @{@"Token": @"CQBLBTDFEQ0UDECA"};
     
     NSString *url = @"http://v20.wkread.com/api.php/home/special";
     
     
     [BHNetTool GET:url Body:nil HeaderFile:headerDic Response:BHJSON Success:^(id result) {
-//                        NSLog(@"%@", result);
+                        NSLog(@"%@", result);
         
         self.arrHot_list = [NSArray array];
         
@@ -101,7 +101,7 @@ UICollectionViewDelegate
 //        NSLog(@"%ld", _arrHot_list.count);
  
     } Failure:^(NSError *error) {
-//        NSLog(@"%@", error);
+        NSLog(@"%@", error);
         
     }];
     

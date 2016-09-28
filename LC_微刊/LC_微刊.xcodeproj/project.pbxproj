@@ -40,6 +40,10 @@
 		4961977F1D915DEC0062C266 /* UIImageView+XLWebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961977A1D915DEC0062C266 /* UIImageView+XLWebCache.m */; };
 		496197801D915DEC0062C266 /* XLImagePageDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961977C1D915DEC0062C266 /* XLImagePageDetailCell.m */; };
 		496197811D915DEC0062C266 /* XLImagePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4961977E1D915DEC0062C266 /* XLImagePageView.m */; };
+		498A61071D9A861200EF30D2 /* LCMagazineNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A61061D9A861200EF30D2 /* LCMagazineNewTableViewCell.m */; };
+		498A610D1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A610C1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m */; };
+		498A61101D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A610F1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m */; };
+		498A61131D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 498A61121D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m */; };
 		49A098621D94AFC400F3693A /* LCSubRecommentOneTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A098611D94AFC400F3693A /* LCSubRecommentOneTableViewCell.m */; };
 		49A098661D94EFDE00F3693A /* BHNetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A098651D94EFDE00F3693A /* BHNetTool.m */; };
 		49A098691D9532BC00F3693A /* LCSubRecommentTwoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A098681D9532BC00F3693A /* LCSubRecommentTwoTableViewCell.m */; };
@@ -163,6 +167,14 @@
 		4961977C1D915DEC0062C266 /* XLImagePageDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageDetailCell.m; sourceTree = "<group>"; };
 		4961977D1D915DEC0062C266 /* XLImagePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XLImagePageView.h; sourceTree = "<group>"; };
 		4961977E1D915DEC0062C266 /* XLImagePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XLImagePageView.m; sourceTree = "<group>"; };
+		498A61051D9A861200EF30D2 /* LCMagazineNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMagazineNewTableViewCell.h; sourceTree = "<group>"; };
+		498A61061D9A861200EF30D2 /* LCMagazineNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMagazineNewTableViewCell.m; sourceTree = "<group>"; };
+		498A610B1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMagazineTwoTableViewCell.h; sourceTree = "<group>"; };
+		498A610C1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMagazineTwoTableViewCell.m; sourceTree = "<group>"; };
+		498A610E1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSubMagRecomCollectionViewCell.h; sourceTree = "<group>"; };
+		498A610F1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSubMagRecomCollectionViewCell.m; sourceTree = "<group>"; };
+		498A61111D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSpecialNewTableViewCell.h; sourceTree = "<group>"; };
+		498A61121D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSpecialNewTableViewCell.m; sourceTree = "<group>"; };
 		49A098601D94AFC400F3693A /* LCSubRecommentOneTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSubRecommentOneTableViewCell.h; sourceTree = "<group>"; };
 		49A098611D94AFC400F3693A /* LCSubRecommentOneTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSubRecommentOneTableViewCell.m; sourceTree = "<group>"; };
 		49A098641D94EFDE00F3693A /* BHNetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHNetTool.h; sourceTree = "<group>"; };
@@ -781,6 +793,14 @@
 			children = (
 				49C7CACD1D941643009FBAD7 /* LCDiscoverCollectionViewCell.h */,
 				49C7CACE1D941643009FBAD7 /* LCDiscoverCollectionViewCell.m */,
+				498A61051D9A861200EF30D2 /* LCMagazineNewTableViewCell.h */,
+				498A61061D9A861200EF30D2 /* LCMagazineNewTableViewCell.m */,
+				498A610B1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.h */,
+				498A610C1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m */,
+				498A610E1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.h */,
+				498A610F1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m */,
+				498A61111D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.h */,
+				498A61121D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -985,6 +1005,7 @@
 				49A098901D95669700F3693A /* NSData+ImageContentType.m in Sources */,
 				49FF21CE1D920EFF0038BC5A /* LCMessageViewController.m in Sources */,
 				49C3EB951D9620C700AEDEDB /* LCSubRecommentTypeThreeTableViewCell.m in Sources */,
+				498A61071D9A861200EF30D2 /* LCMagazineNewTableViewCell.m in Sources */,
 				49A098951D95669700F3693A /* SDWebImageDownloaderOperation.m in Sources */,
 				49C7CAC61D93CD5A009FBAD7 /* LCTaikCollectionViewCell.m in Sources */,
 				49A098931D95669700F3693A /* SDWebImageDecoder.m in Sources */,
@@ -996,10 +1017,12 @@
 				496197721D915BDD0062C266 /* DataBaseManager.m in Sources */,
 				49A0989C1D95669700F3693A /* UIImageView+HighlightedWebCache.m in Sources */,
 				496197061D91518F0062C266 /* LCBaseModel.m in Sources */,
+				498A61131D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m in Sources */,
 				49A098981D95669700F3693A /* UIButton+WebCache.m in Sources */,
 				4937342F1D994CD500A0A56B /* LCMagazineNew.m in Sources */,
 				496197661D915B8B0062C266 /* NSDictionary+Categories.m in Sources */,
 				49A0989D1D95669700F3693A /* UIImageView+WebCache.m in Sources */,
+				498A61101D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m in Sources */,
 				49FF22171D929BBF0038BC5A /* TabBarViewController.m in Sources */,
 				496197691D915B8B0062C266 /* NSString+Regex.m in Sources */,
 				49FF21CB1D920EDA0038BC5A /* LCDiscoverViewController.m in Sources */,
@@ -1020,6 +1043,7 @@
 				49A098961D95669700F3693A /* SDWebImageManager.m in Sources */,
 				4961976B1D915B8B0062C266 /* UIButton+Block.m in Sources */,
 				49FF22141D928E860038BC5A /* Mybutton.m in Sources */,
+				498A610D1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m in Sources */,
 				49FF221C1D92BD580038BC5A /* LCTitleCollectionViewCell.m in Sources */,
 				49A098921D95669700F3693A /* SDWebImageCompat.m in Sources */,
 				49A098691D9532BC00F3693A /* LCSubRecommentTwoTableViewCell.m in Sources */,
