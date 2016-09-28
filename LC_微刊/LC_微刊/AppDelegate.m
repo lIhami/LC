@@ -22,14 +22,14 @@
     
 #pragma mark - 判断是否是第一次进入应用
     
-    NSUserDefaults *useDef = [NSUserDefaults standardUserDefaults];
-    
-    if (![useDef boolForKey:@"notFirst"]) {
-        self.window.rootViewController = [[ViewController alloc] init];
-    } else {
-        self.window.rootViewController = [[TabBarViewController alloc] init];
-        
-    }
+//    NSUserDefaults *useDef = [NSUserDefaults standardUserDefaults];
+//    
+//    if (![useDef boolForKey:@"notFirst"]) {
+//        self.window.rootViewController = [[ViewController alloc] init];
+//    } else {
+//        self.window.rootViewController = [[TabBarViewController alloc] init];
+//        
+//    }
     
     
     
