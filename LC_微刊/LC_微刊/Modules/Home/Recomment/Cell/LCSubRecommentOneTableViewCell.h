@@ -18,14 +18,6 @@
 
 @property (nonatomic, copy)NSString *recommentTitleText;
 
-@property (nonatomic, strong)UILabel *browseLabel;
-
-@property (nonatomic, copy)NSString *browseText;
-
-@property (nonatomic, strong)UILabel *commentLabel;
-
-@property (nonatomic, copy)NSString *commentText;
-
 @property (nonatomic, strong)UILabel *authorLabel;
 
 @property (nonatomic, copy)NSString *authorText;

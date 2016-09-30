@@ -1,14 +1,14 @@
 //
-//  LCMagazineNew.h
+//  LCAllMagazine.h
 //  LC_微刊
 //
-//  Created by dllo on 16/9/26.
+//  Created by Omaiga on 16/9/30.
 //  Copyright © 2016年 dllo. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface LCMagazineNew : NSObject
+@interface LCAllMagazine : NSObject
 
 @property (nonatomic, copy)NSString *title;
 
@@ -20,6 +20,6 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
-+ (LCMagazineNew *)magazineWithMagazineDic:(NSDictionary *)magazineDic;
++ (LCAllMagazine *)allMagazineWithAllDic:(NSDictionary *)allDic;
 
 @end

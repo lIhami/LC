@@ -8,15 +8,25 @@
 
 #import "LCDiscoverCollectionViewCell.h"
 #import "LCMacro.h"
+#import "UIImageView+WebCache.h"
 #import "LCCarouselView.h"
 #import "LCMagazineNew.h"
+#import "LCNewSpecial.h"
+#import "LCAllMagazine.h"
 #import "LCMagazineNewTableViewCell.h"
 #import "LCMagazineTwoTableViewCell.h"
 #import "LCSpecialNewTableViewCell.h"
+#import "LCSpecialRecommendTableViewCell.h"
+#import "LCAllMagazineTableViewCell.h"
+#import "LCNewSpecial.h"
+
 
 static NSString *const reusableIdentifier = @"cell";
 static NSString *const magazineRecom = @"magCell";
 static NSString *const speCell = @"cellOfSpe";
+static NSString *const speRecCell = @"cellOfRec";
+static NSString *const allCell = @"cellAction";
+
 
 @interface LCDiscoverCollectionViewCell ()
 
@@ -42,7 +52,14 @@ UITableViewDelegate
 
 @property (nonatomic, strong)NSMutableArray *magazineArray;
 
+@property (nonatomic, strong)NSMutableArray *specialNewArray;
+
+@property (nonatomic, strong)NSMutableArray *allMagazineArray;
+
 @property (nonatomic, assign)CGFloat beginDragY;
+
+@property (nonatomic, assign)NSInteger count;
+
 
 @end
 
@@ -53,9 +70,12 @@ UITableViewDelegate
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.count = 3;
         self.topImageArray = [NSMutableArray array];
         self.data = [NSMutableDictionary dictionary];
         self.magazineArray = [NSMutableArray array];
+        self.specialNewArray = [NSMutableArray array];
+        self.allMagazineArray = [NSMutableArray array];
         
         // 网络请求
         [self getDataFromJson];
@@ -64,8 +84,8 @@ UITableViewDelegate
 
         self.groupTableView = [[UITableView alloc] initWithFrame:SCREEN_RECT];
         _groupTableView.contentSize = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
-        _groupTableView.backgroundColor = [UIColor colorWithRed:1.000 green:0.385 blue:0.532 alpha:1.000];
         _groupTableView.rowHeight = 145;
+        _groupTableView.tag = 1212;
         _groupTableView.delegate = self;
         _groupTableView.dataSource = self;
         [self addSubview:_groupTableView];
@@ -74,6 +94,8 @@ UITableViewDelegate
         [_groupTableView registerClass:[LCMagazineNewTableViewCell class] forCellReuseIdentifier:reusableIdentifier];
         [_groupTableView registerClass:[LCMagazineTwoTableViewCell class] forCellReuseIdentifier:magazineRecom];
         [_groupTableView registerClass:[LCSpecialNewTableViewCell class] forCellReuseIdentifier:speCell];
+        [_groupTableView registerClass:[LCSpecialRecommendTableViewCell class] forCellReuseIdentifier:speRecCell];
+        [_groupTableView registerClass:[LCAllMagazineTableViewCell class] forCellReuseIdentifier:allCell];
         
         [_groupTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"header"];
         [_groupTableView dequeueReusableCellWithIdentifier:@"header"];
@@ -147,7 +169,7 @@ UITableViewDelegate
         
         NSArray *ad_list = [_data objectForKey:@"ad_list"];
         NSArray *magazine_new = [_data objectForKey:@"magazine_new"];
-        
+        NSArray *special_new = [_data objectForKey:@"special_new"];
         
         // ad_list 请求
         for (NSDictionary *topDic in ad_list) {
@@ -165,15 +187,90 @@ UITableViewDelegate
             [_magazineArray addObject:magazine];
         }
         
+        
+        // special_new 请求
+        for (NSDictionary *speNewDic in special_new) {
+            LCNewSpecial *specialNew = [LCNewSpecial specialNewWithSpeNewDic:speNewDic];
+            [_specialNewArray addObject:specialNew];
+        }
+
+        
         [_groupTableView reloadData];
         
-        NSLog(@"---------%ld", _magazineArray.count);
    
     } Failure:^(NSError *error) {
         
     }];
     
 }
+
+
+- (void)getAllMagazineDataFromJson {
+    
+    NSString *string = @"http://v20.tp.wkread.com/index.php/v20/Discovery/magazine";
+    NSDictionary *headerDic = @{@"Host":@"v20.tp.wkread.com",
+                                @"Token": @"CQBLBTDFEQ0UDECA"};
+    [BHNetTool GET:string Body:nil HeaderFile:headerDic Response:BHJSON Success:^(id result) {
+        
+        //        NSLog(@"%@", result);
+        NSDictionary *dic = (NSDictionary *)result;
+        
+        self.data = [dic objectForKey:@"data"];
+        
+        NSArray *magazine_list = [_data objectForKey:@"magazine_list"];
+        
+        for (NSDictionary *allDic in magazine_list) {
+            LCAllMagazine *allMag = [LCAllMagazine allMagazineWithAllDic:allDic];
+            [_allMagazineArray addObject:allMag];
+        }
+        
+        [_groupTableView reloadData];
+        
+    } Failure:^(NSError *error) {
+        
+    }];
+    
+}
+
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    
+    if (1212 == scrollView.tag) {
+        if (scrollView.contentOffset.y < 800) {
+            [self getAllMagazineDataFromJson];
+        } else if (scrollView.contentOffset.y > 800 + 145 * _allMagazineArray.count ) {
+            NSString *str = [NSString stringWithFormat:@"http://v20.tp.wkread.com/index.php/v20/Discovery/magazine?page=%ld", _count];
+            
+            _count++;
+            NSDictionary *headerDic1 = @{@"Host":@"v20.tp.wkread.com",
+                                         @"Token": @"CQBLBTDFEQ0UDECA"};
+            
+            [BHNetTool GET:str Body:nil HeaderFile:headerDic1 Response:BHJSON Success:^(id result) {
+                
+                NSDictionary *dic = (NSDictionary *)result;
+                
+                self.data = [dic objectForKey:@"data"];
+                
+                NSArray *magazine_list = [_data objectForKey:@"magazine_list"];
+                
+                for (NSDictionary *allDic in magazine_list) {
+                    LCAllMagazine *allMag = [LCAllMagazine allMagazineWithAllDic:allDic];
+                    [_allMagazineArray addObject:allMag];
+                }
+                
+                [_groupTableView reloadData];
+                
+                
+            } Failure:^(NSError *error) {
+                
+            }];
+            
+            
+        }
+    }
+}
+
 
 
 #pragma mark - tableView分区
@@ -187,7 +284,7 @@ UITableViewDelegate
     } else if (2 == indexPath.section) {
         tableView.rowHeight = 145;
     } else if (3 == indexPath.section) {
-        tableView.rowHeight = 200;
+        tableView.rowHeight = 250;
     } else if (4 == indexPath.section) {
         tableView.rowHeight = 145;
     }
@@ -204,7 +301,6 @@ UITableViewDelegate
 // 分区的标题
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     NSArray *headerTitleArray = @[@"最新微刊", @"编辑精选", @"最新话题", @"精选话题", @"全部微刊"];
-    NSLog(@"%ld", section);
     return headerTitleArray[section];
     
 }
@@ -234,15 +330,15 @@ UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (0 == section) {
-        return 4;
+        return _magazineArray.count;
     } else if (1 == section) {
         return 1;
     } else if (2 == section) {
-        return 5;
+        return _specialNewArray.count;
     } else if (3 == section) {
         return 1;
     }
-    return 30;
+    return _allMagazineArray.count;
 }
 
 
@@ -255,26 +351,68 @@ UITableViewDelegate
 
 // tableView的cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    // 第一个分区cell
     if (0 == indexPath.section) {
         LCMagazineNewTableViewCell *magazineNewCell = [tableView dequeueReusableCellWithIdentifier:reusableIdentifier];
+        LCMagazineNew *magazine = _magazineArray[indexPath.row];
+        magazineNewCell.topText = [NSString stringWithFormat:@"『%@』", magazine.title];
+        magazineNewCell.subscribeText = [NSString stringWithFormat:@"%ld订阅", magazine.subscribe_count];
+        magazineNewCell.articleText = [NSString stringWithFormat:@"%ld文章", magazine.article_count];
+        if (magazine.myDescription == nil) {
+            magazineNewCell.desText = @"作者没有对本微刊进行描述哦, 可以点进去看看有些什么!";
+        } else {
+            magazineNewCell.desText = [NSString stringWithFormat:@"%@", magazine.myDescription];
+        }
         
-//        LCMagazineNew *magazine = _magazineArray[indexPath.row];
-//        magazineNewCell.topText = magazine.title;
-        
+        NSString *imageURL = [magazine.img_info objectForKey:@"src"];
+        [magazineNewCell.magNewImageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
         
         return  magazineNewCell;
+        
+        // 第二个分区cell
     } else if (1 == indexPath.section) {
         LCMagazineTwoTableViewCell *magazineRecomment = [tableView dequeueReusableCellWithIdentifier:magazineRecom];
         
-        
-        
         return magazineRecomment;
+        
+        // 第三个分区cell
     } else if (2 == indexPath.section) {
         LCSpecialNewTableViewCell *specialNewCell = [tableView dequeueReusableCellWithIdentifier:speCell];
+        
+        
+        LCNewSpecial *specialNew = _specialNewArray[indexPath.row];
+        specialNewCell.titleText = [NSString stringWithFormat:@"#%@#", specialNew.name];
+        specialNewCell.artText = [NSString stringWithFormat:@"%@ 文章", specialNew.article_count];
+        specialNewCell.subscribeText = [NSString stringWithFormat:@"%@ 订阅", specialNew.subscribe_count];
+        
+        
+        
+        NSString *imageURL = [specialNew.img_info objectForKey:@"src"];
+        [specialNewCell.specialNewImageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+        
         return specialNewCell;
+        
+        // 第四个分区cell
+    } else if (3 == indexPath.section) {
+        LCSpecialRecommendTableViewCell *specialRecomment = [tableView dequeueReusableCellWithIdentifier:speRecCell];
+        
+        return specialRecomment;
+        
+        // 第五个分区cell
+    } else if (4 == indexPath.section) {
+        LCAllMagazineTableViewCell *allMagazine = [tableView dequeueReusableCellWithIdentifier:allCell];
+        
+        LCAllMagazine *magazineAll = _allMagazineArray[indexPath.row];
+        allMagazine.topText = [NSString stringWithFormat:@"『%@』", magazineAll.title];
+        allMagazine.subscribeText = [NSString stringWithFormat:@"%ld订阅", magazineAll.subscribe_count];
+        allMagazine.articleText = [NSString stringWithFormat:@"%ld文章", magazineAll.article_count];
+        NSString *imageURL = [magazineAll.img_info objectForKey:@"src"];
+        [allMagazine.magNewImageView sd_setImageWithURL:[NSURL URLWithString:imageURL]];
+        
+        return allMagazine;
+        
     }
-
+    
     static NSString *reusableIndentifier1 = @"cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reusableIndentifier1];

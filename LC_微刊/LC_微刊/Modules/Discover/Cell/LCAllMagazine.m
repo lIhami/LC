@@ -1,20 +1,19 @@
 //
-//  LCMagazineNew.m
+//  LCAllMagazine.m
 //  LC_微刊
 //
-//  Created by dllo on 16/9/26.
+//  Created by Omaiga on 16/9/30.
 //  Copyright © 2016年 dllo. All rights reserved.
 //
 
-#import "LCMagazineNew.h"
+#import "LCAllMagazine.h"
 
-@implementation LCMagazineNew
+@implementation LCAllMagazine
 
-+ (LCMagazineNew *)magazineWithMagazineDic:(NSDictionary *)magazineDic {
-
-    LCMagazineNew *magazine = [[LCMagazineNew alloc] init];
-    [magazine setValuesForKeysWithDictionary:magazineDic];
-    return magazine;
++ (LCAllMagazine *)allMagazineWithAllDic:(NSDictionary *)allDic {
+    LCAllMagazine *allMag = [[LCAllMagazine alloc] init];
+    [allMag setValuesForKeysWithDictionary:allDic];
+    return allMag;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
@@ -26,7 +25,6 @@
     }
     //    [super setValue:value forUndefinedKey:key];
 }
-
 
 
 @end

@@ -22,12 +22,11 @@
 
 @property (nonatomic, copy)NSString *desText;
 
-@property (nonatomic, strong)UILabel *artLabel;
+@property (nonatomic, strong)UILabel *articleLabel;
 
-@property (nonatomic, copy)NSString *artText;
+@property (nonatomic, copy)NSString *articleText;
 
 @property (nonatomic, strong)UILabel *subscribeLabel;
 
 @property (nonatomic, copy)NSString *subscribeText;
-
 @end

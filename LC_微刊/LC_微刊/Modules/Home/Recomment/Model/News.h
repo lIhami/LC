@@ -16,8 +16,6 @@
 
 @property (nonatomic, copy)NSString *source;
 
-@property (nonatomic, copy)NSString *url_3w;
-
 + (News *)newsWithTitleDic:(NSDictionary *)titleDic;
 
 @end

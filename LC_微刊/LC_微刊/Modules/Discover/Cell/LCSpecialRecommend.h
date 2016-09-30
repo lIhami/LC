@@ -1,18 +1,18 @@
 //
-//  LCMagazineNew.h
+//  LCSpecialRecommend.h
 //  LC_微刊
 //
-//  Created by dllo on 16/9/26.
+//  Created by Omaiga on 16/9/30.
 //  Copyright © 2016年 dllo. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
-@interface LCMagazineNew : NSObject
+@interface LCSpecialRecommend : NSObject
 
-@property (nonatomic, copy)NSString *title;
+@property (nonatomic, copy)NSString *name;
 
-@property (nonatomic, copy)NSString *myDescription;
+@property (nonatomic, copy)NSString *describe;
 
 @property (nonatomic, assign)NSInteger article_count;
 
@@ -20,6 +20,6 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
-+ (LCMagazineNew *)magazineWithMagazineDic:(NSDictionary *)magazineDic;
++ (LCSpecialRecommend *)specialWithSpecialDic:(NSDictionary *)specialDic;
 
 @end

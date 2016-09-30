@@ -34,6 +34,6 @@
 
 @property (nonatomic, strong)UIImage *userImage;
 
-
+@property (nonatomic, assign)float cornerRadius;
 
 @end

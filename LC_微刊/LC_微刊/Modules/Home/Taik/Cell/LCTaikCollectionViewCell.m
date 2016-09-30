@@ -10,7 +10,6 @@
 #import "LCMacro.h"
 #import "LCSubTaikCollectionViewCell.h"
 #import "TaikModel.h"
-#import "HttpClient.h"
 #import "UIImageView+WebCache.h"
 
 // tableView重用池

@@ -8,6 +8,22 @@
 
 #import "LCSpecialNewTableViewCell.h"
 #import "LCMacro.h"
+#import "XLImagePageView.h"
+#import "LCNewSpecial.h"
+
+@interface LCSpecialNewTableViewCell ()
+
+<
+XLImagePageViewDelegate
+>
+
+@property (nonatomic, strong)NSMutableArray *specialNewArray;
+
+@property (nonatomic, strong)NSMutableArray *myImageArray;
+
+@property (nonatomic, strong)XLImagePageView *specialNewPageView;
+
+@end
 
 
 @implementation LCSpecialNewTableViewCell
@@ -15,6 +31,9 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        
+        
         self.specialNewImageView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, SCREEN_WIDTH, 144)];
         _specialNewImageView.image = [UIImage imageNamed:@""];
         _specialNewImageView.backgroundColor = [UIColor cyanColor];
@@ -23,7 +42,9 @@
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.3, SCREEN_WIDTH * 0.13, SCREEN_WIDTH * 0.4, SCREEN_WIDTH * 0.06)];
         _titleLabel.text = @"";
-        _titleLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.385 blue:0.532 alpha:1.000];
+        _titleLabel.textColor = [UIColor whiteColor];
+        _titleLabel.textAlignment = NSTextAlignmentCenter;
+        //        _titleLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.385 blue:0.532 alpha:1.000];
         _titleLabel.numberOfLines = 1;
         [self addSubview:_titleLabel];
         
@@ -32,44 +53,53 @@
         [self addSubview:_lineLabel];
         
         
-        self.artLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.38, SCREEN_WIDTH * 0.22, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.05)];
+        self.artLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.37, SCREEN_WIDTH * 0.22, SCREEN_WIDTH * 0.13, SCREEN_WIDTH * 0.05)];
         _artLabel.numberOfLines = 1;
         _artLabel.textColor = [UIColor whiteColor];
+        _artLabel.font = [UIFont systemFontOfSize:12];
         _artLabel.text = @"";
-        _artLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.490 blue:0.434 alpha:1.000];
+        //        _artLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.490 blue:0.434 alpha:1.000];
         [self addSubview:_artLabel];
         
-        self.subscribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.5, SCREEN_WIDTH * 0.22, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.05)];
+        self.subscribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.51, SCREEN_WIDTH * 0.22, SCREEN_WIDTH * 0.13, SCREEN_WIDTH * 0.05)];
         _subscribeLabel.numberOfLines = 1;
         _subscribeLabel.textColor = [UIColor whiteColor];
+        _subscribeLabel.font = [UIFont systemFontOfSize:12];
         _subscribeLabel.text = @"";
-        _subscribeLabel.backgroundColor = [UIColor colorWithRed:0.763 green:0.406 blue:1.000 alpha:1.000];
+        //        _subscribeLabel.backgroundColor = [UIColor colorWithRed:0.763 green:0.406 blue:1.000 alpha:1.000];
         [self addSubview:_subscribeLabel];
-
+        
     }
     return self;
 }
 
+
+
+
 - (void)setSpecialNewImage:(UIImage *)specialNewImage {
     if (_specialNewImage != specialNewImage) {
+        _specialNewImage = specialNewImage;
         _specialNewImageView.image = specialNewImage;
     }
 }
 
 - (void)setTitleText:(NSString *)titleText {
     if (_titleText != titleText) {
+        _titleText = titleText;
         _titleLabel.text = titleText;
     }
 }
 
 - (void)setArtText:(NSString *)artText {
     if (_artText != artText) {
+        _artText = artText;
         _artLabel.text = artText;
     }
 }
 
 - (void)setSubscribeText:(NSString *)subscribeText {
     if (_subscribeText != subscribeText) {
+        _subscribeText = subscribeText;
         _subscribeLabel.text = subscribeText;
     }
 }
@@ -77,7 +107,7 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
+    
     // Configure the view for the selected state
 }
 
