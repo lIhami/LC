@@ -29,9 +29,12 @@
         _messageLabel.text = @"";
         [self addSubview:_messageLabel];
         
-        self.rightImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.89, 0, SCREEN_WIDTH * 0.1, 80)];
-        _rightImageView.image = [UIImage imageNamed:@"ha.png"];
-        [self addSubview:_rightImageView];
+        self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+       _rightButton.frame = CGRectMake(SCREEN_WIDTH * 0.89, 0, SCREEN_WIDTH * 0.1, 90);
+        [_rightButton setTitle:@"〉" forState:UIControlStateNormal];
+        _rightButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [_rightButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self addSubview:_rightButton];
 
         
     }

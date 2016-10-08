@@ -19,6 +19,8 @@
 #import "LCSpecialRecommendTableViewCell.h"
 #import "LCAllMagazineTableViewCell.h"
 #import "LCNewSpecial.h"
+#import "LCListViewController.h"
+#import "LCLabraryViewController.h"
 
 
 static NSString *const reusableIdentifier = @"cell";
@@ -80,6 +82,10 @@ UITableViewDelegate
         // 网络请求
         [self getDataFromJson];
         
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"tabBarHidden" object:nil];
+    
+        
 #pragma mark - 创建底层tableView
 
         self.groupTableView = [[UITableView alloc] initWithFrame:SCREEN_RECT];
@@ -129,23 +135,21 @@ UITableViewDelegate
     
     
 #pragma mark - 创建排行与智库按钮
-    UIImageView *listImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.34, SCREEN_WIDTH * 0.47, SCREEN_WIDTH * 0.2)];
-    listImageView.image = [UIImage imageNamed:@"paihang.png"];
-    [_discoverScrollView addSubview:listImageView];
     
     UIButton *listButton = [UIButton buttonWithType:UIButtonTypeCustom];
     listButton.backgroundColor = [UIColor clearColor];
-    listButton.frame = listImageView.bounds;
-    [listImageView addSubview:listButton];
+    listButton.frame = CGRectMake(SCREEN_WIDTH * 0.02, SCREEN_HEIGHT * 0.34, SCREEN_WIDTH * 0.47, SCREEN_WIDTH * 0.2);
+    [listButton addTarget:self action:@selector(listButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [listButton setImage:[UIImage imageNamed:@"paihang.png"] forState:UIControlStateNormal];
+    [_discoverScrollView addSubview:listButton];
     
-    UIImageView *libraryImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.51, SCREEN_HEIGHT * 0.34, SCREEN_WIDTH * 0.47, SCREEN_WIDTH * 0.2)];
-    libraryImageView.image = [UIImage imageNamed:@"zhiku.png"];
-    [_discoverScrollView addSubview:libraryImageView];
     
     UIButton *libraryButton = [UIButton buttonWithType:UIButtonTypeCustom];
     libraryButton.backgroundColor = [UIColor clearColor];
-    libraryButton.frame = libraryImageView.bounds;
-    [libraryImageView addSubview:libraryButton];
+    libraryButton.frame = CGRectMake(SCREEN_WIDTH * 0.51, SCREEN_HEIGHT * 0.34, SCREEN_WIDTH * 0.47, SCREEN_WIDTH * 0.2);
+    [libraryButton setImage:[UIImage imageNamed:@"zhiku.png"] forState:UIControlStateNormal];
+    [libraryButton addTarget:self action:@selector(libraryButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_discoverScrollView addSubview:libraryButton];
     
     _groupTableView.tableHeaderView = _discoverScrollView;
     
@@ -204,7 +208,7 @@ UITableViewDelegate
     
 }
 
-
+// 网络请求
 - (void)getAllMagazineDataFromJson {
     
     NSString *string = @"http://v20.tp.wkread.com/index.php/v20/Discovery/magazine";
@@ -232,7 +236,7 @@ UITableViewDelegate
     
 }
 
-
+// 滑动加载全部微刊
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
     
@@ -423,6 +427,52 @@ UITableViewDelegate
 }
 
 
+#pragma mark - 当前控制器的导航控制器
+- (UINavigationController *)naviController {
+    
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        
+        UIResponder* nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            
+            return (UINavigationController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
+// 排行榜点击跳转
+- (void)listButtonAction:(UIButton *)listButton {
+    
+
+    LCListViewController *listVC = [[LCListViewController alloc] init];
+    
+    listVC.hidesBottomBarWhenPushed = YES;
+    
+    [[self naviController] pushViewController:listVC animated:YES];
+
+    
+}
+
+// 智库点击跳转
+- (void)libraryButtonAction:(UIButton *)libraryButton {
+
+    LCLabraryViewController * labraryVC = [[LCLabraryViewController alloc] init];
+    
+    labraryVC.hidesBottomBarWhenPushed = YES;
+    
+    [self.naviController pushViewController:labraryVC animated:YES];
+
+}
+
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+
+
+    
+}
 
 
 @end

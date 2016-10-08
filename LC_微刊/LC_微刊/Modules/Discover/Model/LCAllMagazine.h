@@ -16,6 +16,8 @@
 
 @property (nonatomic, assign)NSInteger article_count;
 
+@property (nonatomic, assign)NSInteger view_count;
+
 @property (nonatomic, assign)NSInteger subscribe_count;
 
 @property (nonatomic, strong)NSDictionary *img_info;

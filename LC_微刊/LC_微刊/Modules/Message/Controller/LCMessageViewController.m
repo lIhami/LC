@@ -9,6 +9,9 @@
 #import "LCMessageViewController.h"
 #import "LCMacro.h"
 #import "MessageTableViewCell.h"
+#import "LCMyViewController.h"
+#import "LCSystemViewController.h"
+
 
 static NSString *const messageCell = @"cellaction";
 
@@ -24,6 +27,14 @@ UITableViewDelegate
 @end
 
 @implementation LCMessageViewController
+
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+}
 
 #pragma mark - 创建TableView
 - (void)createTabelView {
@@ -43,6 +54,8 @@ UITableViewDelegate
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.navigationController.navigationBar.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.title = @"消息中心";
     [self createTabelView];
@@ -65,19 +78,31 @@ UITableViewDelegate
      return cell;
 }
 
+
+#pragma mark - 点击跳转
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NSLog(@"%ld", indexPath.row);
+
+    if (indexPath.row <= 3) {
+        LCMyViewController *myVC = [[LCMyViewController alloc] init];
+        
+        [self.navigationController pushViewController:myVC animated:YES];
+    } else if (indexPath.row == 4){
+        LCSystemViewController *systemVC = [[LCSystemViewController alloc] init];
+        
+        [self.navigationController pushViewController:systemVC animated:YES];
+    
+    }
+
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

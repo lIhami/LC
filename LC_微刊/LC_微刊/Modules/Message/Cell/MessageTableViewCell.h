@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong)UIImageView *messageImageView;
 
-@property (nonatomic, strong)UIImageView *rightImageView;
+@property (nonatomic, strong)UIButton *rightButton;
 
 
 @end

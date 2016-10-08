@@ -43,20 +43,18 @@
         //        _desLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.749 blue:0.261 alpha:1.000];
         [self addSubview:_desLabel];
         
-        self.articleLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.33, SCREEN_WIDTH * 0.27, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.06)];
+        self.articleLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.33, SCREEN_WIDTH * 0.27, SCREEN_WIDTH * 0.17, SCREEN_WIDTH * 0.06)];
         _articleLabel.numberOfLines = 1;
         _articleLabel.font = [UIFont systemFontOfSize:13];
         _articleLabel.textColor = [UIColor grayColor];
         _articleLabel.text = @"";
-        //        _articleLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:_articleLabel];
         
-        self.subscribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.46, SCREEN_WIDTH * 0.27, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.06)];
+        self.subscribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.52, SCREEN_WIDTH * 0.27, SCREEN_WIDTH * 0.17, SCREEN_WIDTH * 0.06)];
         _subscribeLabel.numberOfLines = 1;
         _subscribeLabel.font = [UIFont systemFontOfSize:13];
         _subscribeLabel.textColor = [UIColor grayColor];
         _subscribeLabel.text = @"";
-        //        _subscribeLabel.backgroundColor = [UIColor colorWithRed:0.763 green:0.406 blue:1.000 alpha:1.000];
         [self addSubview:_subscribeLabel];
         
     }

@@ -78,6 +78,23 @@
     [self addChildViewController:myNavigationController];
     
     
+    
+    // 注册通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tabBarHidden:) name:@"tabBarHidden" object:nil];
+    
+    
+}
+
+// 通知
+- (void)tabBarHidden:(NSNotification *)notification {
+
+    if ([notification.object isEqual:@"hide"]) {
+        self.tabBar.hidden = YES;
+    } else {
+    
+        self.tabBar.hidden = NO;
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {

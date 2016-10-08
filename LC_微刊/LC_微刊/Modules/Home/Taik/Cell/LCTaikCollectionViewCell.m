@@ -29,6 +29,8 @@ UICollectionViewDelegate
 
 @property (nonatomic, retain)NSArray *arrHot_list;
 
+@property (nonatomic, strong)UICollectionView *subTaikCollectionView;
+
 @end
 
 @implementation LCTaikCollectionViewCell
@@ -52,22 +54,15 @@ UICollectionViewDelegate
         subTaikFlowLayout.minimumLineSpacing = 15;
         subTaikFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *subTaikCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:subTaikFlowLayout];
-        subTaikCollectionView.backgroundColor = [UIColor colorWithRed:0.906 green:0.925 blue:0.937 alpha:1.000];
-        subTaikCollectionView.delegate = self;
-        subTaikCollectionView.dataSource = self;
-        subTaikCollectionView.showsHorizontalScrollIndicator = NO;
-        [taikScrollView addSubview:subTaikCollectionView];
+        self.subTaikCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.3) collectionViewLayout:subTaikFlowLayout];
+        _subTaikCollectionView.backgroundColor = [UIColor colorWithRed:0.906 green:0.925 blue:0.937 alpha:1.000];
+        _subTaikCollectionView.delegate = self;
+        _subTaikCollectionView.dataSource = self;
+        _subTaikCollectionView.showsHorizontalScrollIndicator = NO;
+        [taikScrollView addSubview:_subTaikCollectionView];
         
-        [subTaikCollectionView registerClass:[LCSubTaikCollectionViewCell class] forCellWithReuseIdentifier:subTaikCell];
+        [_subTaikCollectionView registerClass:[LCSubTaikCollectionViewCell class] forCellWithReuseIdentifier:subTaikCell];
         
-//        // 下部分tableView
-//        UITableView *taikTabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT * 0.3, SCREEN_WIDTH, SCREEN_HEIGHT - SCREEN_HEIGHT * 0.3)];
-//        taikTabelView.delegate = self;
-//        taikTabelView.dataSource = self;
-//        [taikScrollView addSubview:taikTabelView];
-//        
-//        [taikTabelView registerClass:[UITableViewCell class] forCellReuseIdentifier:taikCell];
         
         
         [self getDataFromJson1];
@@ -88,7 +83,7 @@ UICollectionViewDelegate
     
     
     [BHNetTool GET:url Body:nil HeaderFile:headerDic Response:BHJSON Success:^(id result) {
-                        NSLog(@"%@", result);
+        
         
         self.arrHot_list = [NSArray array];
         
@@ -97,7 +92,8 @@ UICollectionViewDelegate
         NSDictionary *arrData = [dic objectForKey:@"data"];
         _arrHot_list = [arrData objectForKey:@"hot_list"];
         
-//        NSLog(@"%ld", _arrHot_list.count);
+
+        [_subTaikCollectionView reloadData];
  
     } Failure:^(NSError *error) {
         NSLog(@"%@", error);
@@ -112,7 +108,7 @@ UICollectionViewDelegate
 
 #pragma mark - collectionView
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 26;
+    return _arrHot_list.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -132,18 +128,5 @@ UICollectionViewDelegate
 }
 
 
-//#pragma mark - tableView协议方法
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return 10;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//
-//    UITableViewCell *taikTableViewCell = [tableView dequeueReusableCellWithIdentifier:taikCell];
-//    taikTableViewCell.textLabel.text = @"哈哈哈";
-//    
-//    return taikTableViewCell;
-//    
-//}
 
 @end

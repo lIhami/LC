@@ -11,6 +11,8 @@
 #import "LCMacro.h"
 #import "LCRecommentCollectionViewCell.h"
 #import "LCTaikCollectionViewCell.h"
+#import "LCRecommendNewsViewController.h"
+
 
 static NSString *const string = @"cell";
 // 推荐重用池
@@ -37,6 +39,14 @@ UICollectionViewDelegate
 @end
 
 @implementation LC_RecommendViewController
+
+
+// 设置顶部navigationbar显示
+- (void)viewWillAppear:(BOOL)animated {
+
+[self.navigationController setNavigationBarHidden:NO animated:NO];
+    
+}
 
 
 #pragma mark - 创建头部标题
@@ -142,9 +152,11 @@ UICollectionViewDelegate
         
     }
     
+    
 }
 
 
+#pragma mark - 滑动切换标题
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     if (scrollView == _changeCollectionView) {
         
@@ -162,9 +174,7 @@ UICollectionViewDelegate
         
         
     }
-    
 }
-
 
 
 

@@ -97,6 +97,27 @@
 		49FF221C1D92BD580038BC5A /* LCTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49FF221B1D92BD580038BC5A /* LCTitleCollectionViewCell.m */; };
 		8CE74CE3D0879AB5A2018D17 /* libPods-LC_微刊.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0036A98516C2D2DCCEAC2980 /* libPods-LC_微刊.a */; };
 		EB9F6A731D9E646C005C1665 /* LCAllMagazineTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9F6A721D9E646C005C1665 /* LCAllMagazineTableViewCell.m */; };
+		EBA3CA3C1DA3D50F00F0B6EA /* chuangjianhuati.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA3B1DA3D50F00F0B6EA /* chuangjianhuati.png */; };
+		EBA3CA3E1DA3D51600F0B6EA /* chuangjianweikan.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA3D1DA3D51600F0B6EA /* chuangjianweikan.png */; };
+		EBA3CA401DA3D51C00F0B6EA /* fabuwenzhang.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA3F1DA3D51C00F0B6EA /* fabuwenzhang.png */; };
+		EBA3CA421DA3D52300F0B6EA /* shaoyishao.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA411DA3D52300F0B6EA /* shaoyishao.png */; };
+		EBA3CA441DA3D52A00F0B6EA /* ruhefawen.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA431DA3D52A00F0B6EA /* ruhefawen.png */; };
+		EBA3CA481DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA471DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.m */; };
+		EBA3CA4B1DA6609000F0B6EA /* LCSignInCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA4A1DA6609000F0B6EA /* LCSignInCollectionViewCell.m */; };
+		EBA3CA4E1DA660E200F0B6EA /* LCRegisterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA4D1DA660E200F0B6EA /* LCRegisterCollectionViewCell.m */; };
+		EBA3CA511DA680D200F0B6EA /* 微博.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA501DA680D200F0B6EA /* 微博.png */; };
+		EBA3CA531DA680DB00F0B6EA /* QQ.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA521DA680DB00F0B6EA /* QQ.png */; };
+		EBA3CA551DA680E200F0B6EA /* 微信.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA541DA680E200F0B6EA /* 微信.png */; };
+		EBA3CA581DA6884300F0B6EA /* LCListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA571DA6884300F0B6EA /* LCListViewController.m */; };
+		EBA3CA5B1DA7451D00F0B6EA /* LCLabraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA5A1DA7451D00F0B6EA /* LCLabraryViewController.m */; };
+		EBA3CA5F1DA7535200F0B6EA /* 调节器.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA5E1DA7535200F0B6EA /* 调节器.png */; };
+		EBA3CA611DA7535B00F0B6EA /* 更多.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA601DA7535B00F0B6EA /* 更多.png */; };
+		EBA3CA631DA753D700F0B6EA /* down.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA621DA753D700F0B6EA /* down.png */; };
+		EBA3CA661DA7B0ED00F0B6EA /* LCSelectWeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA651DA7B0ED00F0B6EA /* LCSelectWeiViewController.m */; };
+		EBA3CA681DA875BB00F0B6EA /* 点评.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA671DA875BB00F0B6EA /* 点评.png */; };
+		EBA3CA6A1DA878CC00F0B6EA /* Mytop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA691DA878CC00F0B6EA /* Mytop.jpg */; };
+		EBA3CA6D1DA87FF400F0B6EA /* LCSystemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBA3CA6C1DA87FF400F0B6EA /* LCSystemViewController.m */; };
+		EBA3CA6F1DA88B8A00F0B6EA /* system.png in Resources */ = {isa = PBXBuildFile; fileRef = EBA3CA6E1DA88B8A00F0B6EA /* system.png */; };
 		EBD960DA1D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960D91D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.m */; };
 		EBD960DD1D9E6CF400B51648 /* LCAllMagazine.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960DC1D9E6CF400B51648 /* LCAllMagazine.m */; };
 		EBD960E01D9E6D9800B51648 /* LCMagazineRecomment.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960DF1D9E6D9800B51648 /* LCMagazineRecomment.m */; };
@@ -104,6 +125,7 @@
 		EBD960E61D9E6E3E00B51648 /* LCSpecialRecommend.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960E51D9E6E3E00B51648 /* LCSpecialRecommend.m */; };
 		EBD960E91D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960E81D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m */; };
 		EBD960EC1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960EB1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.m */; };
+		EBD960F51D9E885F00B51648 /* LCRecommendNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EBD960F41D9E885F00B51648 /* LCRecommendNewsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,8 +136,8 @@
 		493734221D990D4700A0A56B /* LCCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCCarouselView.m; sourceTree = "<group>"; };
 		493734271D99490A00A0A56B /* LCZoomDisScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCZoomDisScrollView.h; sourceTree = "<group>"; };
 		493734281D99490A00A0A56B /* LCZoomDisScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCZoomDisScrollView.m; sourceTree = "<group>"; };
-		4937342D1D994CD500A0A56B /* LCMagazineNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCMagazineNew.h; path = "LC_微刊/Modules/Discover/View/LCMagazineNew.h"; sourceTree = SOURCE_ROOT; };
-		4937342E1D994CD500A0A56B /* LCMagazineNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCMagazineNew.m; path = "LC_微刊/Modules/Discover/View/LCMagazineNew.m"; sourceTree = SOURCE_ROOT; };
+		4937342D1D994CD500A0A56B /* LCMagazineNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMagazineNew.h; sourceTree = "<group>"; };
+		4937342E1D994CD500A0A56B /* LCMagazineNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMagazineNew.m; sourceTree = "<group>"; };
 		496196601D90CA2F0062C266 /* LC_微刊.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "LC_微刊.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		496196641D90CA2F0062C266 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		496196661D90CA2F0062C266 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -268,20 +290,50 @@
 		49FF221B1D92BD580038BC5A /* LCTitleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCTitleCollectionViewCell.m; sourceTree = "<group>"; };
 		EB9F6A711D9E646C005C1665 /* LCAllMagazineTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAllMagazineTableViewCell.h; sourceTree = "<group>"; };
 		EB9F6A721D9E646C005C1665 /* LCAllMagazineTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCAllMagazineTableViewCell.m; sourceTree = "<group>"; };
+		EBA3CA3B1DA3D50F00F0B6EA /* chuangjianhuati.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chuangjianhuati.png; sourceTree = "<group>"; };
+		EBA3CA3D1DA3D51600F0B6EA /* chuangjianweikan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chuangjianweikan.png; sourceTree = "<group>"; };
+		EBA3CA3F1DA3D51C00F0B6EA /* fabuwenzhang.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fabuwenzhang.png; sourceTree = "<group>"; };
+		EBA3CA411DA3D52300F0B6EA /* shaoyishao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shaoyishao.png; sourceTree = "<group>"; };
+		EBA3CA431DA3D52A00F0B6EA /* ruhefawen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ruhefawen.png; sourceTree = "<group>"; };
+		EBA3CA461DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMyTitleCollectionViewCell.h; sourceTree = "<group>"; };
+		EBA3CA471DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMyTitleCollectionViewCell.m; sourceTree = "<group>"; };
+		EBA3CA491DA6609000F0B6EA /* LCSignInCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSignInCollectionViewCell.h; sourceTree = "<group>"; };
+		EBA3CA4A1DA6609000F0B6EA /* LCSignInCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSignInCollectionViewCell.m; sourceTree = "<group>"; };
+		EBA3CA4C1DA660E200F0B6EA /* LCRegisterCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCRegisterCollectionViewCell.h; sourceTree = "<group>"; };
+		EBA3CA4D1DA660E200F0B6EA /* LCRegisterCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCRegisterCollectionViewCell.m; sourceTree = "<group>"; };
+		EBA3CA501DA680D200F0B6EA /* 微博.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "微博.png"; sourceTree = "<group>"; };
+		EBA3CA521DA680DB00F0B6EA /* QQ.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QQ.png; sourceTree = "<group>"; };
+		EBA3CA541DA680E200F0B6EA /* 微信.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "微信.png"; sourceTree = "<group>"; };
+		EBA3CA561DA6884300F0B6EA /* LCListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCListViewController.h; sourceTree = "<group>"; };
+		EBA3CA571DA6884300F0B6EA /* LCListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCListViewController.m; sourceTree = "<group>"; };
+		EBA3CA591DA7451D00F0B6EA /* LCLabraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCLabraryViewController.h; sourceTree = "<group>"; };
+		EBA3CA5A1DA7451D00F0B6EA /* LCLabraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCLabraryViewController.m; sourceTree = "<group>"; };
+		EBA3CA5E1DA7535200F0B6EA /* 调节器.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "调节器.png"; sourceTree = "<group>"; };
+		EBA3CA601DA7535B00F0B6EA /* 更多.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "更多.png"; sourceTree = "<group>"; };
+		EBA3CA621DA753D700F0B6EA /* down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down.png; sourceTree = "<group>"; };
+		EBA3CA641DA7B0ED00F0B6EA /* LCSelectWeiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSelectWeiViewController.h; sourceTree = "<group>"; };
+		EBA3CA651DA7B0ED00F0B6EA /* LCSelectWeiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSelectWeiViewController.m; sourceTree = "<group>"; };
+		EBA3CA671DA875BB00F0B6EA /* 点评.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "点评.png"; sourceTree = "<group>"; };
+		EBA3CA691DA878CC00F0B6EA /* Mytop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Mytop.jpg; sourceTree = "<group>"; };
+		EBA3CA6B1DA87FF400F0B6EA /* LCSystemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSystemViewController.h; sourceTree = "<group>"; };
+		EBA3CA6C1DA87FF400F0B6EA /* LCSystemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSystemViewController.m; sourceTree = "<group>"; };
+		EBA3CA6E1DA88B8A00F0B6EA /* system.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = system.png; sourceTree = "<group>"; };
 		EBD960D81D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSpecialRecommendTableViewCell.h; sourceTree = "<group>"; };
 		EBD960D91D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSpecialRecommendTableViewCell.m; sourceTree = "<group>"; };
-		EBD960DB1D9E6CF400B51648 /* LCAllMagazine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCAllMagazine.h; path = "LC_微刊/Modules/Discover/Cell/LCAllMagazine.h"; sourceTree = SOURCE_ROOT; };
-		EBD960DC1D9E6CF400B51648 /* LCAllMagazine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCAllMagazine.m; path = "LC_微刊/Modules/Discover/Cell/LCAllMagazine.m"; sourceTree = SOURCE_ROOT; };
-		EBD960DE1D9E6D9800B51648 /* LCMagazineRecomment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCMagazineRecomment.h; path = "LC_微刊/Modules/Discover/Cell/LCMagazineRecomment.h"; sourceTree = SOURCE_ROOT; };
-		EBD960DF1D9E6D9800B51648 /* LCMagazineRecomment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCMagazineRecomment.m; path = "LC_微刊/Modules/Discover/Cell/LCMagazineRecomment.m"; sourceTree = SOURCE_ROOT; };
-		EBD960E11D9E6DF100B51648 /* LCNewSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCNewSpecial.h; path = "LC_微刊/Modules/Discover/Cell/LCNewSpecial.h"; sourceTree = SOURCE_ROOT; };
-		EBD960E21D9E6DF100B51648 /* LCNewSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCNewSpecial.m; path = "LC_微刊/Modules/Discover/Cell/LCNewSpecial.m"; sourceTree = SOURCE_ROOT; };
-		EBD960E41D9E6E3E00B51648 /* LCSpecialRecommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LCSpecialRecommend.h; path = "LC_微刊/Modules/Discover/Cell/LCSpecialRecommend.h"; sourceTree = SOURCE_ROOT; };
-		EBD960E51D9E6E3E00B51648 /* LCSpecialRecommend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LCSpecialRecommend.m; path = "LC_微刊/Modules/Discover/Cell/LCSpecialRecommend.m"; sourceTree = SOURCE_ROOT; };
+		EBD960DB1D9E6CF400B51648 /* LCAllMagazine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCAllMagazine.h; sourceTree = "<group>"; };
+		EBD960DC1D9E6CF400B51648 /* LCAllMagazine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCAllMagazine.m; sourceTree = "<group>"; };
+		EBD960DE1D9E6D9800B51648 /* LCMagazineRecomment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCMagazineRecomment.h; sourceTree = "<group>"; };
+		EBD960DF1D9E6D9800B51648 /* LCMagazineRecomment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCMagazineRecomment.m; sourceTree = "<group>"; };
+		EBD960E11D9E6DF100B51648 /* LCNewSpecial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCNewSpecial.h; sourceTree = "<group>"; };
+		EBD960E21D9E6DF100B51648 /* LCNewSpecial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCNewSpecial.m; sourceTree = "<group>"; };
+		EBD960E41D9E6E3E00B51648 /* LCSpecialRecommend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSpecialRecommend.h; sourceTree = "<group>"; };
+		EBD960E51D9E6E3E00B51648 /* LCSpecialRecommend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSpecialRecommend.m; sourceTree = "<group>"; };
 		EBD960E71D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSpecialRecommendZoomScrollView.h; sourceTree = "<group>"; };
 		EBD960E81D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSpecialRecommendZoomScrollView.m; sourceTree = "<group>"; };
 		EBD960EA1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCSpecialRecommendCarouselView.h; sourceTree = "<group>"; };
 		EBD960EB1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCSpecialRecommendCarouselView.m; sourceTree = "<group>"; };
+		EBD960F31D9E885F00B51648 /* LCRecommendNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCRecommendNewsViewController.h; sourceTree = "<group>"; };
+		EBD960F41D9E885F00B51648 /* LCRecommendNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LCRecommendNewsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,8 +558,10 @@
 		496197161D9155B20062C266 /* My */ = {
 			isa = PBXGroup;
 			children = (
+				EBA3CA451DA65AC500F0B6EA /* Cell */,
 				496197231D9158CA0062C266 /* Controller */,
 				496197251D9158F70062C266 /* Model */,
+				EBA3CA4F1DA680A900F0B6EA /* MyImage */,
 				496197241D9158EF0062C266 /* View */,
 			);
 			path = My;
@@ -551,6 +605,8 @@
 		4961971B1D9157050062C266 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				EBD960F31D9E885F00B51648 /* LCRecommendNewsViewController.h */,
+				EBD960F41D9E885F00B51648 /* LCRecommendNewsViewController.m */,
 				496196891D90DBDD0062C266 /* LC_RecommendViewController.h */,
 				4961968A1D90DBDD0062C266 /* LC_RecommendViewController.m */,
 			);
@@ -562,12 +618,12 @@
 			children = (
 				493734211D990D4700A0A56B /* LCCarouselView.h */,
 				493734221D990D4700A0A56B /* LCCarouselView.m */,
-				493734271D99490A00A0A56B /* LCZoomDisScrollView.h */,
-				493734281D99490A00A0A56B /* LCZoomDisScrollView.m */,
-				EBD960E71D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.h */,
-				EBD960E81D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m */,
 				EBD960EA1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.h */,
 				EBD960EB1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.m */,
+				EBD960E71D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.h */,
+				EBD960E81D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m */,
+				493734271D99490A00A0A56B /* LCZoomDisScrollView.h */,
+				493734281D99490A00A0A56B /* LCZoomDisScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -575,10 +631,10 @@
 		4961971D1D91572E0062C266 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				4937342D1D994CD500A0A56B /* LCMagazineNew.h */,
-				4937342E1D994CD500A0A56B /* LCMagazineNew.m */,
 				EBD960DB1D9E6CF400B51648 /* LCAllMagazine.h */,
 				EBD960DC1D9E6CF400B51648 /* LCAllMagazine.m */,
+				4937342D1D994CD500A0A56B /* LCMagazineNew.h */,
+				4937342E1D994CD500A0A56B /* LCMagazineNew.m */,
 				EBD960DE1D9E6D9800B51648 /* LCMagazineRecomment.h */,
 				EBD960DF1D9E6D9800B51648 /* LCMagazineRecomment.m */,
 				EBD960E11D9E6DF100B51648 /* LCNewSpecial.h */,
@@ -594,6 +650,12 @@
 			children = (
 				49FF21C91D920EDA0038BC5A /* LCDiscoverViewController.h */,
 				49FF21CA1D920EDA0038BC5A /* LCDiscoverViewController.m */,
+				EBA3CA591DA7451D00F0B6EA /* LCLabraryViewController.h */,
+				EBA3CA5A1DA7451D00F0B6EA /* LCLabraryViewController.m */,
+				EBA3CA561DA6884300F0B6EA /* LCListViewController.h */,
+				EBA3CA571DA6884300F0B6EA /* LCListViewController.m */,
+				EBA3CA641DA7B0ED00F0B6EA /* LCSelectWeiViewController.h */,
+				EBA3CA651DA7B0ED00F0B6EA /* LCSelectWeiViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -610,6 +672,8 @@
 			children = (
 				49FF21CC1D920EFF0038BC5A /* LCMessageViewController.h */,
 				49FF21CD1D920EFF0038BC5A /* LCMessageViewController.m */,
+				EBA3CA6B1DA87FF400F0B6EA /* LCSystemViewController.h */,
+				EBA3CA6C1DA87FF400F0B6EA /* LCSystemViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -781,8 +845,12 @@
 		49C3EB9F1D96690200AEDEDB /* DiscoverImage */ = {
 			isa = PBXGroup;
 			children = (
+				EBA3CA621DA753D700F0B6EA /* down.png */,
 				49C3EBA21D96692E00AEDEDB /* paihang.png */,
 				49C3EBA01D96692900AEDEDB /* zhiku.png */,
+				EBA3CA601DA7535B00F0B6EA /* 更多.png */,
+				EBA3CA671DA875BB00F0B6EA /* 点评.png */,
+				EBA3CA5E1DA7535200F0B6EA /* 调节器.png */,
 			);
 			path = DiscoverImage;
 			sourceTree = "<group>";
@@ -792,6 +860,7 @@
 			children = (
 				49C7CA801D938E13009FBAD7 /* @我的消息.png */,
 				49C7CAC71D93E098009FBAD7 /* ha.png */,
+				EBA3CA6E1DA88B8A00F0B6EA /* system.png */,
 				49C7CA821D938E17009FBAD7 /* 好友动态.png */,
 				49C7CA7A1D938E07009FBAD7 /* 系统消息.png */,
 				49C7CA7C1D938E0B009FBAD7 /* 订阅消息.png */,
@@ -812,20 +881,20 @@
 		49C7CAC91D93F4F0009FBAD7 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				EB9F6A711D9E646C005C1665 /* LCAllMagazineTableViewCell.h */,
+				EB9F6A721D9E646C005C1665 /* LCAllMagazineTableViewCell.m */,
 				49C7CACD1D941643009FBAD7 /* LCDiscoverCollectionViewCell.h */,
 				49C7CACE1D941643009FBAD7 /* LCDiscoverCollectionViewCell.m */,
 				498A61051D9A861200EF30D2 /* LCMagazineNewTableViewCell.h */,
 				498A61061D9A861200EF30D2 /* LCMagazineNewTableViewCell.m */,
 				498A610B1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.h */,
 				498A610C1D9A9C0400EF30D2 /* LCMagazineTwoTableViewCell.m */,
-				498A610E1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.h */,
-				498A610F1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m */,
 				498A61111D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.h */,
 				498A61121D9AA39A00EF30D2 /* LCSpecialNewTableViewCell.m */,
-				EB9F6A711D9E646C005C1665 /* LCAllMagazineTableViewCell.h */,
-				EB9F6A721D9E646C005C1665 /* LCAllMagazineTableViewCell.m */,
 				EBD960D81D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.h */,
 				EBD960D91D9E6B9600B51648 /* LCSpecialRecommendTableViewCell.m */,
+				498A610E1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.h */,
+				498A610F1D9A9F4300EF30D2 /* LCSubMagRecomCollectionViewCell.m */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -833,21 +902,13 @@
 		49FF21F11D928B7C0038BC5A /* tabBarController */ = {
 			isa = PBXGroup;
 			children = (
+				EBA3CA3A1DA3D4D100F0B6EA /* image */,
 				49FF21F31D928C770038BC5A /* MyTabBar.h */,
 				49FF21F41D928C770038BC5A /* MyTabBar.m */,
 				49FF22121D928E860038BC5A /* Mybutton.h */,
 				49FF22131D928E860038BC5A /* Mybutton.m */,
 				49FF22151D929BBF0038BC5A /* TabBarViewController.h */,
 				49FF22161D929BBF0038BC5A /* TabBarViewController.m */,
-				49FF22101D928E570038BC5A /* create.png */,
-				49FF220A1D928E260038BC5A /* discover.png */,
-				49FF22081D928E200038BC5A /* discover_change.png */,
-				49FF220E1D928E320038BC5A /* home.png */,
-				49FF220C1D928E2B0038BC5A /* home_change.png */,
-				49FF22061D928E1D0038BC5A /* message.png */,
-				49FF22041D928E1A0038BC5A /* message_change.png */,
-				49FF22021D928E160038BC5A /* my.png */,
-				49FF22001D928E110038BC5A /* my_change.png */,
 			);
 			path = tabBarController;
 			sourceTree = "<group>";
@@ -867,6 +928,51 @@
 				49FF221B1D92BD580038BC5A /* LCTitleCollectionViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		EBA3CA3A1DA3D4D100F0B6EA /* image */ = {
+			isa = PBXGroup;
+			children = (
+				EBA3CA3B1DA3D50F00F0B6EA /* chuangjianhuati.png */,
+				EBA3CA3D1DA3D51600F0B6EA /* chuangjianweikan.png */,
+				49FF22101D928E570038BC5A /* create.png */,
+				49FF220A1D928E260038BC5A /* discover.png */,
+				49FF22081D928E200038BC5A /* discover_change.png */,
+				EBA3CA3F1DA3D51C00F0B6EA /* fabuwenzhang.png */,
+				49FF220E1D928E320038BC5A /* home.png */,
+				49FF220C1D928E2B0038BC5A /* home_change.png */,
+				49FF22061D928E1D0038BC5A /* message.png */,
+				49FF22041D928E1A0038BC5A /* message_change.png */,
+				49FF22021D928E160038BC5A /* my.png */,
+				49FF22001D928E110038BC5A /* my_change.png */,
+				EBA3CA431DA3D52A00F0B6EA /* ruhefawen.png */,
+				EBA3CA411DA3D52300F0B6EA /* shaoyishao.png */,
+			);
+			path = image;
+			sourceTree = "<group>";
+		};
+		EBA3CA451DA65AC500F0B6EA /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				EBA3CA461DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.h */,
+				EBA3CA471DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.m */,
+				EBA3CA4C1DA660E200F0B6EA /* LCRegisterCollectionViewCell.h */,
+				EBA3CA4D1DA660E200F0B6EA /* LCRegisterCollectionViewCell.m */,
+				EBA3CA491DA6609000F0B6EA /* LCSignInCollectionViewCell.h */,
+				EBA3CA4A1DA6609000F0B6EA /* LCSignInCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		EBA3CA4F1DA680A900F0B6EA /* MyImage */ = {
+			isa = PBXGroup;
+			children = (
+				EBA3CA691DA878CC00F0B6EA /* Mytop.jpg */,
+				EBA3CA521DA680DB00F0B6EA /* QQ.png */,
+				EBA3CA541DA680E200F0B6EA /* 微信.png */,
+				EBA3CA501DA680D200F0B6EA /* 微博.png */,
+			);
+			path = MyImage;
 			sourceTree = "<group>";
 		};
 		FB2917CD05F3E8D80CB062D8 /* Frameworks */ = {
@@ -938,25 +1044,39 @@
 			buildActionMask = 2147483647;
 			files = (
 				49B4CE7A1D917378005DB476 /* Main.storyboard in Resources */,
+				EBA3CA421DA3D52300F0B6EA /* shaoyishao.png in Resources */,
+				EBA3CA6F1DA88B8A00F0B6EA /* system.png in Resources */,
 				49FF22111D928E570038BC5A /* create.png in Resources */,
 				49FF22051D928E1A0038BC5A /* message_change.png in Resources */,
 				49FF220D1D928E2B0038BC5A /* home_change.png in Resources */,
 				49FF22071D928E1D0038BC5A /* message.png in Resources */,
+				EBA3CA531DA680DB00F0B6EA /* QQ.png in Resources */,
+				EBA3CA441DA3D52A00F0B6EA /* ruhefawen.png in Resources */,
+				EBA3CA551DA680E200F0B6EA /* 微信.png in Resources */,
 				49FF22031D928E160038BC5A /* my.png in Resources */,
+				EBA3CA611DA7535B00F0B6EA /* 更多.png in Resources */,
+				EBA3CA631DA753D700F0B6EA /* down.png in Resources */,
 				49FF220B1D928E260038BC5A /* discover.png in Resources */,
 				496196731D90CA2F0062C266 /* LaunchScreen.storyboard in Resources */,
+				EBA3CA681DA875BB00F0B6EA /* 点评.png in Resources */,
 				496196841D90CF740062C266 /* 引导页2.jpg in Resources */,
 				49FF22011D928E110038BC5A /* my_change.png in Resources */,
 				49C7CAC81D93E098009FBAD7 /* ha.png in Resources */,
+				EBA3CA401DA3D51C00F0B6EA /* fabuwenzhang.png in Resources */,
 				496196701D90CA2F0062C266 /* Assets.xcassets in Resources */,
 				496196881D90CF7E0062C266 /* 引导页4.jpg in Resources */,
+				EBA3CA3C1DA3D50F00F0B6EA /* chuangjianhuati.png in Resources */,
+				EBA3CA6A1DA878CC00F0B6EA /* Mytop.jpg in Resources */,
+				EBA3CA3E1DA3D51600F0B6EA /* chuangjianweikan.png in Resources */,
 				49C7CA831D938E17009FBAD7 /* 好友动态.png in Resources */,
 				49FF220F1D928E320038BC5A /* home.png in Resources */,
 				496196821D90CF630062C266 /* 引导页1.jpg in Resources */,
 				49C7CA7B1D938E07009FBAD7 /* 系统消息.png in Resources */,
+				EBA3CA5F1DA7535200F0B6EA /* 调节器.png in Resources */,
 				49C7CA7F1D938E0F009FBAD7 /* 评论.png in Resources */,
 				49C7CA811D938E13009FBAD7 /* @我的消息.png in Resources */,
 				49C7CA7D1D938E0B009FBAD7 /* 订阅消息.png in Resources */,
+				EBA3CA511DA680D200F0B6EA /* 微博.png in Resources */,
 				49C3EBA11D96692900AEDEDB /* zhiku.png in Resources */,
 				49FF22091D928E200038BC5A /* discover_change.png in Resources */,
 				49C3EBA31D96692E00AEDEDB /* paihang.png in Resources */,
@@ -1023,7 +1143,9 @@
 				49A098941D95669700F3693A /* SDWebImageDownloader.m in Sources */,
 				49A0989B1D95669700F3693A /* UIImage+WebP.m in Sources */,
 				496197631D915B8B0062C266 /* NSArray+Categories.m in Sources */,
+				EBA3CA4B1DA6609000F0B6EA /* LCSignInCollectionViewCell.m in Sources */,
 				496197011D9151160062C266 /* LCBaseViewController.m in Sources */,
+				EBA3CA661DA7B0ED00F0B6EA /* LCSelectWeiViewController.m in Sources */,
 				49C7CACF1D941643009FBAD7 /* LCDiscoverCollectionViewCell.m in Sources */,
 				493734291D99490A00A0A56B /* LCZoomDisScrollView.m in Sources */,
 				496197801D915DEC0062C266 /* XLImagePageDetailCell.m in Sources */,
@@ -1031,6 +1153,7 @@
 				49FF21CE1D920EFF0038BC5A /* LCMessageViewController.m in Sources */,
 				49C3EB951D9620C700AEDEDB /* LCSubRecommentTypeThreeTableViewCell.m in Sources */,
 				498A61071D9A861200EF30D2 /* LCMagazineNewTableViewCell.m in Sources */,
+				EBA3CA5B1DA7451D00F0B6EA /* LCLabraryViewController.m in Sources */,
 				49A098951D95669700F3693A /* SDWebImageDownloaderOperation.m in Sources */,
 				EBD960EC1D9E6F4300B51648 /* LCSpecialRecommendCarouselView.m in Sources */,
 				49C7CAC61D93CD5A009FBAD7 /* LCTaikCollectionViewCell.m in Sources */,
@@ -1038,8 +1161,10 @@
 				49A098621D94AFC400F3693A /* LCSubRecommentOneTableViewCell.m in Sources */,
 				496197811D915DEC0062C266 /* XLImagePageView.m in Sources */,
 				4961976C1D915B8B0062C266 /* UIColor+Categories.m in Sources */,
+				EBA3CA6D1DA87FF400F0B6EA /* LCSystemViewController.m in Sources */,
 				496197651D915B8B0062C266 /* NSDate+EasyExtend.mm in Sources */,
 				49A0988F1D95669700F3693A /* MKAnnotationView+WebCache.m in Sources */,
+				EBA3CA581DA6884300F0B6EA /* LCListViewController.m in Sources */,
 				496197721D915BDD0062C266 /* DataBaseManager.m in Sources */,
 				49A0989C1D95669700F3693A /* UIImageView+HighlightedWebCache.m in Sources */,
 				496197061D91518F0062C266 /* LCBaseModel.m in Sources */,
@@ -1057,7 +1182,9 @@
 				4961966B1D90CA2F0062C266 /* ViewController.m in Sources */,
 				496197681D915B8B0062C266 /* NSString+Categories.m in Sources */,
 				4961976D1D915B8B0062C266 /* UIImage+Categories.m in Sources */,
+				EBA3CA481DA65ED200F0B6EA /* LCMyTitleCollectionViewCell.m in Sources */,
 				4961976E1D915B8B0062C266 /* UIView+Frame.m in Sources */,
+				EBD960F51D9E885F00B51648 /* LCRecommendNewsViewController.m in Sources */,
 				49A098661D94EFDE00F3693A /* BHNetTool.m in Sources */,
 				4961970A1D9151EE0062C266 /* LCBaseView.m in Sources */,
 				49FF21D11D920F1C0038BC5A /* LCMyViewController.m in Sources */,
@@ -1084,6 +1211,7 @@
 				EBD960E91D9E6EE300B51648 /* LCSpecialRecommendZoomScrollView.m in Sources */,
 				49C3EB981D965B6400AEDEDB /* News.m in Sources */,
 				49A098971D95669700F3693A /* SDWebImagePrefetcher.m in Sources */,
+				EBA3CA4E1DA660E200F0B6EA /* LCRegisterCollectionViewCell.m in Sources */,
 				49C7CACC1D940304009FBAD7 /* LCSubTaikCollectionViewCell.m in Sources */,
 				4961968B1D90DBDD0062C266 /* LC_RecommendViewController.m in Sources */,
 				49A0989E1D95669700F3693A /* UIView+WebCacheOperation.m in Sources */,
