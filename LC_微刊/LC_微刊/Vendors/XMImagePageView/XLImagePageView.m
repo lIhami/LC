@@ -30,11 +30,17 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        self.backgroundColor = [UIColor whiteColor];
+        
         self.imageArray = [NSMutableArray array];
+        self.titleArray = [NSMutableArray array];
+        self.articleArray = [NSMutableArray array];
+        self.subArray = [NSMutableArray array];
 
         // Do any additional setup after loading the view.
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = self.bounds.size;
+        flowLayout.itemSize = CGSizeMake(frame.size.width, 200);
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -61,13 +67,23 @@
 - (void)setImageArray:(NSArray *)imageArray {
     if (_imageArray != imageArray) {
         _imageArray = imageArray;
-        [self.collectionView reloadData];
     }
+    [self.collectionView reloadData];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.imageArray.count;
 }
+
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    XLImagePageDetailCell *contentCell = (XLImagePageDetailCell *)cell;
+    CGRect contentImageRect = contentCell.contentImageView.frame;
+    contentImageRect.origin.y = -(20 * indexPath.row) + collectionView.contentOffset.y / 3;
+    contentCell.contentImageView.frame = contentImageRect;
+    
+}
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     XLImagePageDetailCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"imagePageDetail" forIndexPath:indexPath];
@@ -91,7 +107,9 @@
         cell.contentImageView.image = self.imageArray[indexPath.item];
     }
     
-    
+    cell.titleLabel.text = self.titleArray[indexPath.item];
+    cell.artLabel.text = self.articleArray[indexPath.item];
+    cell.subscribeLabel.text = self.subArray[indexPath.item];
     
     
     
@@ -101,25 +119,41 @@
 
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat content = scrollView.contentOffset.x;
-    if (content >= 0 && content <= scrollView.contentSize.width - [UIScreen mainScreen].bounds.size.width) {
-        
-        //    rect.size.width = [UIScreen mainScreen].bounds.size.width - content / 2;
-        
-        NSIndexPath *contentIndexPath = [NSIndexPath indexPathForItem:scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width inSection:0];
-        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem:scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width + 1 inSection:0];
-        
-        XLImagePageDetailCell *contentCell = (XLImagePageDetailCell *)[self.collectionView cellForItemAtIndexPath:contentIndexPath];
-        XLImagePageDetailCell *nextCell = (XLImagePageDetailCell *)[self.collectionView cellForItemAtIndexPath:nextIndexPath];
-        
-        CGRect contentImageViewRect = contentCell.contentImageView.frame;
-        CGRect nextImageViewRect = nextCell.contentImageView.frame;
-        contentImageViewRect.origin.x = 0 + (content - contentIndexPath.item * [UIScreen mainScreen].bounds.size.width) / 3;
-        nextImageViewRect.origin.x = 0 - [UIScreen mainScreen].bounds.size.width / 3 + (content - contentIndexPath.item * [UIScreen mainScreen].bounds.size.width) / 3;
-        contentCell.contentImageView.frame = contentImageViewRect;
-        nextCell.contentImageView.frame = nextImageViewRect;
-    }
+//    CGFloat content = scrollView.contentOffset.x;
+//    if (content >= 0 && content <= scrollView.contentSize.width - [UIScreen mainScreen].bounds.size.width) {
+//        
+//        //    rect.size.width = [UIScreen mainScreen].bounds.size.width - content / 2;
+//        
+//        NSIndexPath *contentIndexPath = [NSIndexPath indexPathForItem:scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width inSection:0];
+//        NSIndexPath *nextIndexPath = [NSIndexPath indexPathForItem:scrollView.contentOffset.x / [UIScreen mainScreen].bounds.size.width + 1 inSection:0];
+//        
+//        XLImagePageDetailCell *contentCell = (XLImagePageDetailCell *)[self.collectionView cellForItemAtIndexPath:contentIndexPath];
+//        XLImagePageDetailCell *nextCell = (XLImagePageDetailCell *)[self.collectionView cellForItemAtIndexPath:nextIndexPath];
+//        
+//        CGRect contentImageViewRect = contentCell.contentImageView.frame;
+//        CGRect nextImageViewRect = nextCell.contentImageView.frame;
+//        contentImageViewRect.origin.x = 0 + (content - contentIndexPath.item * [UIScreen mainScreen].bounds.size.width) / 3;
+//        nextImageViewRect.origin.x = 0 - [UIScreen mainScreen].bounds.size.width / 3 + (content - contentIndexPath.item * [UIScreen mainScreen].bounds.size.width) / 3;
+//        contentCell.contentImageView.frame = contentImageViewRect;
+//        nextCell.contentImageView.frame = nextImageViewRect;
+//    }
     
+    
+    CGFloat content = scrollView.contentOffset.y;
+    if (content >= 0 && content <= scrollView.contentSize.height - self.frame.size.height) {
+        NSArray *cells = [self.collectionView visibleCells];
+        
+        
+        for (XLImagePageDetailCell *contentCell in cells) {
+            NSIndexPath *contentIndexPath = [self.collectionView indexPathForCell:contentCell];
+            CGRect contentImageViewRect = contentCell.contentImageView.frame;
+            contentImageViewRect.origin.y = -(20 * contentIndexPath.row) + scrollView.contentOffset.y / 3;
+            contentCell.contentImageView.frame = contentImageViewRect;
+            
+        }
+        
+    }
+
     
 }
 

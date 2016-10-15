@@ -44,7 +44,8 @@ UICollectionViewDelegate
 // 设置顶部navigationbar显示
 - (void)viewWillAppear:(BOOL)animated {
 
-[self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:NO];
+    [self collectionView:_homeCollectionView didSelectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0]];
     
 }
 
@@ -68,8 +69,9 @@ UICollectionViewDelegate
     [self.navigationController.navigationBar addSubview:_homeCollectionView];
     
     [_homeCollectionView registerClass:[LCTitleCollectionViewCell class] forCellWithReuseIdentifier:string];
-
     
+    
+
 }
 
 
@@ -82,6 +84,8 @@ UICollectionViewDelegate
     homeFlowLayout.minimumInteritemSpacing = 0;
     homeFlowLayout.minimumLineSpacing = 0;
     homeFlowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    
     self.changeCollectionView = [[UICollectionView alloc] initWithFrame:self.view.bounds collectionViewLayout:homeFlowLayout];
     _changeCollectionView.backgroundColor = [UIColor whiteColor];
     _changeCollectionView.delegate = self;
@@ -93,8 +97,6 @@ UICollectionViewDelegate
     
     _changeCollectionView.pagingEnabled = YES;
     [self.view addSubview:_changeCollectionView];
-    
-    
 }
 
 
@@ -105,7 +107,7 @@ UICollectionViewDelegate
     [self createTitleCollectionView];
     [self createChangeCollectionView];
 
-//    [self getDataFromJson1];
+    
 }
 
 
@@ -118,7 +120,14 @@ UICollectionViewDelegate
     if (collectionView == _homeCollectionView) {
         
         LCTitleCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:string forIndexPath:indexPath];
+        
         cell.titleLable.text = _menuArray[indexPath.row];
+        if ([cell.titleLable.text isEqualToString:@"推荐"]) {
+            [cell setDidSelected:YES];
+
+        } else {
+            [cell setDidSelected:NO];
+        }
         
         return cell;
     }

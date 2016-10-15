@@ -87,11 +87,11 @@ UITableViewDelegate
     if (indexPath.row <= 3) {
         LCMyViewController *myVC = [[LCMyViewController alloc] init];
         
-        [self.navigationController pushViewController:myVC animated:YES];
+        [self.navigationController presentViewController:myVC animated:YES completion:nil];
     } else if (indexPath.row == 4){
         LCSystemViewController *systemVC = [[LCSystemViewController alloc] init];
         
-        [self.navigationController pushViewController:systemVC animated:YES];
+        [[self navigationController] pushViewController:systemVC animated:YES];
     
     }
 

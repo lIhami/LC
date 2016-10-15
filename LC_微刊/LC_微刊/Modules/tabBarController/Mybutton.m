@@ -9,10 +9,14 @@
 #import "Mybutton.h"
 #import "LCMacro.h"
 #import "LCMyViewController.h"
+#import "LCQuestionArticileViewController.h"
+#import "AppDelegate.h"
 
 @interface Mybutton ()
 
 @property (nonatomic, strong)UIView *createView;
+
+@property (nonatomic, strong)UIButton *createTaikButton;
 
 @end
 
@@ -39,7 +43,6 @@
 
 - (void)buttonAction {
     
-       NSLog(@"疼疼疼");
 
     // 创建临时View
     self.createView = [[UIView alloc] initWithFrame:SCREEN_RECT];
@@ -68,11 +71,11 @@
     
     
     // 动画
-    UIButton *createTaikButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    createTaikButton.frame = CGRectMake(SCREEN_WIDTH * 0.2, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
-    [createTaikButton setImage:[UIImage imageNamed:@"chuangjianhuati.png"] forState:UIControlStateNormal];
-    [createTaikButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [_createView addSubview:createTaikButton];
+    self.createTaikButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    _createTaikButton.frame = CGRectMake(SCREEN_WIDTH * 0.2, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
+    [_createTaikButton setImage:[UIImage imageNamed:@"chuangjianhuati.png"] forState:UIControlStateNormal];
+    [_createTaikButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_createView addSubview:_createTaikButton];
     
     UILabel *createTaikLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.21, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.05)];
     createTaikLabel.text = @"创建话题";
@@ -86,7 +89,7 @@
     UIButton *createMagazineButton = [UIButton buttonWithType:UIButtonTypeCustom];
     createMagazineButton.frame = CGRectMake(SCREEN_WIDTH * 0.6, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
     [createMagazineButton setImage:[UIImage imageNamed:@"chuangjianweikan.png"] forState:UIControlStateNormal];
-//    [createMagazineButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [createMagazineButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_createView addSubview:createMagazineButton];
     
     UILabel *createMagazineLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.56, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.05)];
@@ -101,6 +104,7 @@
     UIButton *questionButton = [UIButton buttonWithType:UIButtonTypeCustom];
     questionButton.frame = CGRectMake(SCREEN_WIDTH * 0.1, SCREEN_HEIGHT + SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
     [questionButton setImage:[UIImage imageNamed:@"ruhefawen.png"] forState:UIControlStateNormal];
+    [questionButton addTarget:self action:@selector(questionAction:) forControlEvents:UIControlEventTouchUpInside];
     [_createView addSubview:questionButton];
     
     UILabel *questionLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.1, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.05)];
@@ -115,7 +119,7 @@
     UIButton *articleButton = [UIButton buttonWithType:UIButtonTypeCustom];
     articleButton.frame = CGRectMake(SCREEN_WIDTH * 0.4, SCREEN_HEIGHT + SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
     [articleButton setImage:[UIImage imageNamed:@"fabuwenzhang.png"] forState:UIControlStateNormal];
-//    [articleButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [articleButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_createView addSubview:articleButton];
     
     UILabel *articleLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.4, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.05)];
@@ -130,7 +134,7 @@
     UIButton *scanButton = [UIButton buttonWithType:UIButtonTypeCustom];
     scanButton.frame = CGRectMake(SCREEN_WIDTH * 0.7, SCREEN_HEIGHT + SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
     [scanButton setImage:[UIImage imageNamed:@"shaoyishao.png"] forState:UIControlStateNormal];
-//    [scanButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [scanButton addTarget:self action:@selector(createTaikButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [_createView addSubview:scanButton];
     
     UILabel *scanLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.7, SCREEN_HEIGHT, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.05)];
@@ -144,7 +148,7 @@
     
     
     [UIView animateWithDuration: 0.2 delay: 0.35 options: UIViewAnimationOptionTransitionNone  animations: ^{
-        createTaikButton.frame = CGRectMake(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.4, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.2);
+        _createTaikButton.frame = CGRectMake(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.4, SCREEN_WIDTH * 0.2, SCREEN_WIDTH * 0.2);
         createTaikLabel.frame = CGRectMake(SCREEN_WIDTH * 0.26, SCREEN_HEIGHT * 0.52, SCREEN_WIDTH * 0.18, SCREEN_WIDTH * 0.05);
         
     } completion:nil];
@@ -179,6 +183,56 @@
     } completion:nil];
     
 
+    
+}
+
+
+- (UIViewController *)ml_viewController {
+    for (UIView* next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
+#pragma mark - 当前控制器的导航控制器
+- (UINavigationController *)naviController {
+        
+    AppDelegate *appDeleagete = [UIApplication sharedApplication].delegate;
+    UITabBarController *tabBarController = (UITabBarController *)appDeleagete.window.rootViewController;
+    UINavigationController *navigation = tabBarController.selectedViewController;
+    NSLog(@"%@", navigation);
+    if ([navigation isKindOfClass:[UINavigationController class]]) {
+        return navigation;
+    }
+    
+    return nil;
+}
+
+- (void)questionAction:(UIButton *)question {
+    
+    _createView.hidden = YES;
+
+    LCQuestionArticileViewController *quesVC = [[LCQuestionArticileViewController alloc] init];
+    
+    [[self naviController] pushViewController:quesVC animated:YES];
+
+}
+
+- (void)createTaikButtonAction:(UIButton *)creatrTaikButton {
+    
+    
+    _createView.hidden = YES;
+    
+    LCMyViewController *myVC = [[LCMyViewController alloc] init];
+    
+    [[self ml_viewController] presentViewController:myVC animated:YES completion:nil];
+    
+    myVC.hidesBottomBarWhenPushed = NO;
+    
     
 }
 

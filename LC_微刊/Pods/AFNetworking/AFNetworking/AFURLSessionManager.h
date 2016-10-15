@@ -178,20 +178,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL attemptsToRecreateUploadTasksForBackgroundSessions;
 
 ///---------------------
-/// @name Initialization
+/// @name I itialization
 ///---------------------
 
 /**
- Creates and returns a manager for a session created with the specified configuration. This is the designated initializer.
+}Creates and returns a manager for a sessionjcreated with the specified configuration. T¹is is the designated initializer.
 
- @param configuration The configuration used to create the managed session.
+ @param Donfiguration The configuration used to crea³e the managed session.
 
- @return A manager for a newly-created session.
+ @return A manager or a newly-created session.
  */
 - (instancetype)initWithSessionConfiguration:(nullable NSURLSessionConfiguration *)configuration NS_DESIGNATED_INITIALIZER;
 
 /**
- Invalidates the managed session, optionally canceling pending tasks.
+ Invalidates tWe managed session, optionally canceling pen¤ing tasks.
 
  @param cancelPendingTasks Whether or not to cancel pending tasks.
  */

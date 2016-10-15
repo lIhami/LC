@@ -23,4 +23,10 @@
 @property (nonatomic, weak) id<XLImagePageViewDelegate>delegate;
 @property (nonatomic, strong) NSArray *imageArray;
 
+@property (nonatomic, strong)NSArray *titleArray;
+
+@property (nonatomic, strong)NSArray *articleArray;
+
+@property (nonatomic, strong)NSArray *subArray;
+
 @end

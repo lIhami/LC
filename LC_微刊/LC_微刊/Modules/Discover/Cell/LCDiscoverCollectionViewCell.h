@@ -10,4 +10,6 @@
 
 @interface LCDiscoverCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, assign)NSInteger pageNumber;
+
 @end

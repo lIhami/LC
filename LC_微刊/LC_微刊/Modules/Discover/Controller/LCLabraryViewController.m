@@ -19,13 +19,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor cyanColor];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"tabBarHidden" object:@"hide"];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     
+    // 加载页面
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://vkimg.wkread.com/zhiku/zhiku2.html"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_url]];
     [self.view addSubview:webView];
     [webView loadRequest:request];
     
@@ -46,28 +45,24 @@
     UIButton *pingButton = [UIButton buttonWithType:UIButtonTypeCustom];
     pingButton.frame = CGRectMake(SCREEN_WIDTH * 0.25, 10, SCREEN_WIDTH * 0.08, SCREEN_WIDTH * 0.08);
     [pingButton setImage:[UIImage imageNamed:@"点评.png"] forState:UIControlStateNormal];
-//    [pingButton addTarget:self action:@selector(pingButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:pingButton];
 
     
     UIButton *downButton = [UIButton buttonWithType:UIButtonTypeCustom];
     downButton.frame = CGRectMake(SCREEN_WIDTH * 0.46, 10, SCREEN_WIDTH * 0.08, SCREEN_WIDTH * 0.08);
     [downButton setImage:[UIImage imageNamed:@"down.png"] forState:UIControlStateNormal];
-    //    [downButton addTarget:self action:@selector(downButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:downButton];
     
     
     UIButton *tiaoButton = [UIButton buttonWithType:UIButtonTypeCustom];
     tiaoButton.frame = CGRectMake(SCREEN_WIDTH * 0.66, 10, SCREEN_WIDTH * 0.08, SCREEN_WIDTH * 0.08);
     [tiaoButton setImage:[UIImage imageNamed:@"调节器.png"] forState:UIControlStateNormal];
-    //    [tiaoButton addTarget:self action:@selector(tiaoButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:tiaoButton];
     
     
     UIButton *moreButton = [UIButton buttonWithType:UIButtonTypeCustom];
     moreButton.frame = CGRectMake(SCREEN_WIDTH * 0.85, 10, SCREEN_WIDTH * 0.08, SCREEN_WIDTH * 0.08);
     [moreButton setImage:[UIImage imageNamed:@"更多.png"] forState:UIControlStateNormal];
-    //    [tiaoButton addTarget:self action:@selector(moreButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [bottomView addSubview:moreButton];
 
     
@@ -75,7 +70,7 @@
 
 - (void)backButtonAction:(UIButton *)backButton {
     
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 

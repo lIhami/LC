@@ -11,6 +11,7 @@
 #import "LCSubMagRecomCollectionViewCell.h"
 #import "LCMagazineRecomment.h"
 #import "UIImageView+WebCache.h"
+#import "LCSelectWeiViewController.h"
 
 static NSString *const subMagRecomCell = @"cell";
 
@@ -34,6 +35,8 @@ UICollectionViewDelegate
     if (self) {
         self.magazineRecArray = [NSMutableArray array];
         
+        
+        // 创建collectionView
         UICollectionViewFlowLayout *subTaikFlowLayout = [[UICollectionViewFlowLayout alloc] init];
         subTaikFlowLayout.itemSize = CGSizeMake(SCREEN_WIDTH * 0.4, SCREEN_HEIGHT * 0.27);
         subTaikFlowLayout.minimumInteritemSpacing = 10;
@@ -47,13 +50,17 @@ UICollectionViewDelegate
         _subMagRecom.showsHorizontalScrollIndicator = NO;
         [self addSubview:_subMagRecom];
         
+        
+        // 注册
         [_subMagRecom registerClass:[LCSubMagRecomCollectionViewCell class] forCellWithReuseIdentifier:subMagRecomCell];
         
+        // 网络请求
         [self getDataFromJson];
         
     }
     return self;
 }
+
 
 #pragma mark - 网络请求
 - (void)getDataFromJson {
@@ -113,6 +120,45 @@ UICollectionViewDelegate
     return cell;
 }
 
+
+#pragma mark - 当前控制器的导航控制器
+- (UINavigationController *)naviController {
+    
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        
+        UIResponder* nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            
+            return (UINavigationController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
+#pragma mark - 点击cell跳转
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    LCMagazineRecomment *recommentOfMag = _magazineRecArray[indexPath.item];
+    
+    
+    LCSelectWeiViewController *weiVC = [[LCSelectWeiViewController alloc] init];
+    
+    weiVC.id = recommentOfMag.id;
+    weiVC.name = [NSString stringWithFormat:@"『%@』", recommentOfMag.title];
+    weiVC.imgURL = [recommentOfMag.img_info objectForKey:@"src"];
+    weiVC.userName = [recommentOfMag.user objectForKey:@"nickname"];
+    weiVC.view_count = [NSString stringWithFormat:@"%@", recommentOfMag.view_count];
+    weiVC.scoreNumber = [NSString stringWithFormat:@"%ld", recommentOfMag.article_count];
+    weiVC.subNumber = [NSString stringWithFormat:@"%ld", recommentOfMag.subscribe_count];
+    
+    weiVC.hidesBottomBarWhenPushed = YES;
+    
+    [[self naviController] pushViewController:weiVC animated:YES];
+
+
+}
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

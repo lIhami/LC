@@ -18,6 +18,11 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
+@property (nonatomic, copy)NSString *myDescription;
+
+@property (nonatomic, strong)NSNumber *id;
+
+
 + (LCNewSpecial *)specialNewWithSpeNewDic:(NSDictionary *)speNewDic;
 
 @end

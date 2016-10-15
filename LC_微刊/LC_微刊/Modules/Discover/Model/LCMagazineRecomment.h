@@ -18,7 +18,14 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
+@property (nonatomic, strong)NSNumber *view_count;
+
 @property (nonatomic, strong)NSDictionary *user;
+
+@property (nonatomic, copy)NSString *myDescription;
+
+@property (nonatomic, strong)NSNumber *id;
+
 
 + (LCMagazineRecomment *)magazineRecWithMagazineRecDic:(NSDictionary *)magazineRecDic;
 

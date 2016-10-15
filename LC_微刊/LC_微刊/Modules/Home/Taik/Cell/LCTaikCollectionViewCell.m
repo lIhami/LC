@@ -11,6 +11,7 @@
 #import "LCSubTaikCollectionViewCell.h"
 #import "TaikModel.h"
 #import "UIImageView+WebCache.h"
+#import "LCSelectMagazineViewController.h"
 
 // tableView重用池
 static NSString *const taikCell = @"cell";
@@ -125,6 +126,42 @@ UICollectionViewDelegate
     
     return subCell;
     
+}
+
+
+#pragma mark - 当前控制器的导航控制器
+- (UINavigationController *)naviController {
+    
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        
+        UIResponder* nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            
+            return (UINavigationController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    LCSelectMagazineViewController *selectMag = [[LCSelectMagazineViewController alloc] init];
+    selectMag.id = [_arrHot_list[indexPath.item] objectForKey:@"id"];
+    
+    selectMag.name = [NSString stringWithFormat:@"%@", [_arrHot_list[indexPath.row] objectForKey:@"name"]];
+    selectMag.describe = [NSString stringWithFormat:@"%@", [_arrHot_list[indexPath.row] objectForKey:@"describe"]];
+    selectMag.imgURL = [[_arrHot_list[indexPath.row] objectForKey:@"img_info"] objectForKey:@"src"];
+
+    
+    // 隐藏tabbar
+    selectMag.hidesBottomBarWhenPushed = YES;
+    
+    [[self naviController] pushViewController:selectMag animated:YES];
+    
+
 }
 
 

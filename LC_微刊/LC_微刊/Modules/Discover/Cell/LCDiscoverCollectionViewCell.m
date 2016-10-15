@@ -21,6 +21,10 @@
 #import "LCNewSpecial.h"
 #import "LCListViewController.h"
 #import "LCLabraryViewController.h"
+#import "LCSelectWeiViewController.h"
+#import "LCSelectMagazineViewController.h"
+#import "LCSearchViewController.h"
+
 
 
 static NSString *const reusableIdentifier = @"cell";
@@ -33,34 +37,39 @@ static NSString *const allCell = @"cellAction";
 @interface LCDiscoverCollectionViewCell ()
 
 <
-UISearchResultsUpdating,
 UITableViewDataSource,
-UITableViewDelegate
+UITableViewDelegate,
+LCDiscoverCarouselViewDelegate
 >
 
+// 搜索
 @property (nonatomic, retain)UISearchController *searchController;
-
-@property (nonatomic, retain)UITableView *discoverTableView;
-
+// 整体tableview
 @property (nonatomic, strong)UITableView *groupTableView;
-
+// 顶部轮播图图片数组
 @property (nonatomic, strong)NSMutableArray *topImageArray;
-
+// 头视图底部scrollview
 @property (nonatomic, strong)UIScrollView *discoverScrollView;
-
+// 顶部轮播图
 @property (nonatomic, strong)LCCarouselView *carouselView;
 // 网络请求
 @property (nonatomic, strong)NSMutableDictionary *data;
-
+// 最新微刊数组
 @property (nonatomic, strong)NSMutableArray *magazineArray;
-
+// 最新话题数组
 @property (nonatomic, strong)NSMutableArray *specialNewArray;
-
+// 所有微刊数组
 @property (nonatomic, strong)NSMutableArray *allMagazineArray;
-
-@property (nonatomic, assign)CGFloat beginDragY;
-
+// 下拉加载数据
 @property (nonatomic, assign)NSInteger count;
+// 顶部广告数组
+@property (nonatomic, strong)NSArray *ad_list;
+// 顶部广告字典
+@property (nonatomic, strong)NSDictionary *dataDic;
+// 顶部广告数组传值数组
+@property (nonatomic, strong)NSArray *middle;
+
+@property (nonatomic, strong)UIView *searchView;
 
 
 @end
@@ -78,13 +87,14 @@ UITableViewDelegate
         self.magazineArray = [NSMutableArray array];
         self.specialNewArray = [NSMutableArray array];
         self.allMagazineArray = [NSMutableArray array];
+        self.ad_list = [NSArray array];
+        self.middle = [NSArray array];
+        
         
         // 网络请求
         [self getDataFromJson];
         
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"tabBarHidden" object:nil];
-    
         
 #pragma mark - 创建底层tableView
 
@@ -94,7 +104,7 @@ UITableViewDelegate
         _groupTableView.tag = 1212;
         _groupTableView.delegate = self;
         _groupTableView.dataSource = self;
-        [self addSubview:_groupTableView];
+        [self.contentView addSubview:_groupTableView];
         
        // 注册
         [_groupTableView registerClass:[LCMagazineNewTableViewCell class] forCellReuseIdentifier:reusableIdentifier];
@@ -122,16 +132,27 @@ UITableViewDelegate
     
 #pragma mark - 创建顶部轮播图
     self.carouselView = [[LCCarouselView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT * 0.27)];
+    _carouselView.delegate = self;
     
     [_discoverScrollView addSubview:_carouselView];
     
     
-#pragma mark - 创建搜索栏
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-    _searchController.searchResultsUpdater = self;
-    _searchController.searchBar.frame = CGRectMake(0, SCREEN_HEIGHT * 0.27, SCREEN_WIDTH, 45);
-    [_discoverScrollView addSubview:_searchController.searchBar];
+    // 添加轻拍手势
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     
+    [tap setNumberOfTapsRequired:1];
+    [tap setNumberOfTouchesRequired:1];
+    
+    [_carouselView addGestureRecognizer:tap];
+    
+    
+#pragma mark - 创建搜索栏
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchButton.frame = CGRectMake(0, SCREEN_HEIGHT * 0.27, SCREEN_WIDTH, 45);
+    [searchButton setImage:[UIImage imageNamed:@"search.png"] forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(searchButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [_discoverScrollView addSubview:searchButton];
     
     
 #pragma mark - 创建排行与智库按钮
@@ -171,17 +192,19 @@ UITableViewDelegate
         
         self.data = [dic objectForKey:@"data"];
         
-        NSArray *ad_list = [_data objectForKey:@"ad_list"];
+        self.ad_list = [_data objectForKey:@"ad_list"];
         NSArray *magazine_new = [_data objectForKey:@"magazine_new"];
         NSArray *special_new = [_data objectForKey:@"special_new"];
         
         // ad_list 请求
-        for (NSDictionary *topDic in ad_list) {
+        for (NSDictionary *topDic in _ad_list) {
             NSString *urlOfString = [NSString stringWithFormat:@"%@", [[topDic objectForKey:@"img_info"] objectForKey:@"src"]];
             NSURL *imageUrl = [NSURL URLWithString: urlOfString];
             UIImage *topImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
             [_topImageArray addObject:topImage];
         }
+        
+        _middle = _ad_list;
         _carouselView.imageArray = _topImageArray;
 
 
@@ -286,7 +309,8 @@ UITableViewDelegate
     } else if (1 == indexPath.section) {
         tableView.rowHeight = 200;
     } else if (2 == indexPath.section) {
-        tableView.rowHeight = 145;
+        tableView.rowHeight = 145
+        ;
     } else if (3 == indexPath.section) {
         tableView.rowHeight = 250;
     } else if (4 == indexPath.section) {
@@ -316,20 +340,18 @@ UITableViewDelegate
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, 10, 2, 20)];
     label.backgroundColor = [UIColor colorWithRed:0.922 green:0.443 blue:0.443 alpha:1.000];
     [view.contentView addSubview:label];
-    
-    if (0 == section || 2 == section) {
-        UILabel *rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.85, 10, SCREEN_WIDTH * 0.15, 20)];
-        rightLabel.text = @"全部>";
-        rightLabel.textColor = [UIColor lightGrayColor];
-        [view.contentView addSubview:rightLabel];
-    }
-    
-    
-   
+  
     return view;
 }
 
 
+// 分区数量
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 5;
+}
+
+
+#pragma mark - tableView协议方法
 // 不同分区cell数量
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
@@ -345,13 +367,6 @@ UITableViewDelegate
     return _allMagazineArray.count;
 }
 
-
-
-#pragma mark - tableView协议方法
-// 分区数量
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-       return 5;
-}
 
 // tableView的cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -458,21 +473,220 @@ UITableViewDelegate
 
 // 智库点击跳转
 - (void)libraryButtonAction:(UIButton *)libraryButton {
-
-    LCLabraryViewController * labraryVC = [[LCLabraryViewController alloc] init];
     
-    labraryVC.hidesBottomBarWhenPushed = YES;
+    NSString *stringOfTop = @"http://v20.tp.wkread.com/index.php/Api/Magazine/articleDetail?id=44138";
     
-    [self.naviController pushViewController:labraryVC animated:YES];
+    NSDictionary *headerDic2 = @{@"Host":@"v20.tp.wkread.com",
+                                 @"Token": @"CQBLBTDFEQ0UDECA"};
+    
+    [BHNetTool GET:stringOfTop Body:nil HeaderFile:headerDic2 Response:BHJSON Success:^(id result) {
+        
+        self.dataDic = [result objectForKey:@"data"];
+        
+        
+        LCLabraryViewController *labVC = [[LCLabraryViewController alloc] init];
+        
+        labVC.url = [[_dataDic objectForKey:@"article"] objectForKey:@"url"];
+        
+        labVC.hidesBottomBarWhenPushed = YES;
+        
+        [[self naviController] pushViewController:labVC animated:YES];
+        
+        
+    } Failure:^(NSError *error) {
+        
+    }];
+    
 
 }
 
 
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+#pragma mark - 搜索按钮跳转搜索页面
+- (void)searchButtonAction:(UIButton *)searchButton {
+    
+    
+    LCSearchViewController *searchVC = [[LCSearchViewController alloc] init];
+    
+    searchVC.hidesBottomBarWhenPushed = YES;
+    
+    [[self naviController] pushViewController:searchVC animated:YES];
+}
 
 
+#pragma mark - tableview cell点击跳转
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    // 第一个分区
+    if (0 == indexPath.section) {
+        LCMagazineNew *magazineNew = _magazineArray[indexPath.row];
+        
+        LCSelectWeiViewController *weiVC = [[LCSelectWeiViewController alloc] init];
+        
+        weiVC.id = magazineNew.id;
+        weiVC.name = [NSString stringWithFormat:@"『%@』", magazineNew.title];
+        weiVC.imgURL = [magazineNew.img_info objectForKey:@"src"];
+        weiVC.userName = [magazineNew.user objectForKey:@"nickname"];
+        weiVC.view_count = [NSString stringWithFormat:@"%ld", magazineNew.view_count];
+        weiVC.scoreNumber = [NSString stringWithFormat:@"%ld", magazineNew.article_count];
+        weiVC.subNumber = [NSString stringWithFormat:@"%ld", magazineNew.subscribe_count];
+        
+        weiVC.hidesBottomBarWhenPushed = YES;
+        
+        [[self naviController] pushViewController:weiVC animated:YES];
+        
+    }
+    // 第三个分区
+    else if (2 == indexPath.section) {
+        
+        LCNewSpecial *specialNew = _specialNewArray[indexPath.row];
+    
+        LCSelectMagazineViewController *magVC = [[LCSelectMagazineViewController alloc] init];
+        
+        magVC.id = specialNew.id;
+        magVC.name = specialNew.name;
+        magVC.describe = specialNew.myDescription;
+        magVC.imgURL = [specialNew.img_info objectForKey:@"src"];
+        
+        magVC.hidesBottomBarWhenPushed = YES;
+        
+        [[self naviController] pushViewController:magVC animated:YES];
+    
+    
+    }
+    // 第五个分区
+    else if (4 == indexPath.section) {
+    
+        LCAllMagazine *allMagazine = _allMagazineArray[indexPath.row];
+        
+        LCSelectWeiViewController *weiVC = [[LCSelectWeiViewController alloc] init];
+        
+        weiVC.id = allMagazine.id;
+        weiVC.name = [NSString stringWithFormat:@"『%@』", allMagazine.title];
+        weiVC.imgURL = [allMagazine.img_info objectForKey:@"src"];
+        weiVC.userName = [allMagazine.user objectForKey:@"nickname"];
+        weiVC.view_count = [NSString stringWithFormat:@"%ld", allMagazine.view_count];
+        weiVC.scoreNumber = [NSString stringWithFormat:@"%ld", allMagazine.article_count];
+        weiVC.subNumber = [NSString stringWithFormat:@"%ld", allMagazine.subscribe_count];
+        
+        weiVC.hidesBottomBarWhenPushed = YES;
+        
+        [[self naviController] pushViewController:weiVC animated:YES];
+    
+    }
+
+}
+
+// 协议传值
+- (void)deceleratingScrollViewWithPageNumber:(NSInteger)pageNumber {
+
+    self.pageNumber = pageNumber;
     
 }
+
+
+#pragma mark - 顶部轮播图点击跳转
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+    
+    NSNumber *number = [_middle[_pageNumber] objectForKey:@"type"];
+    
+    NSLog(@"%@", [_middle[_pageNumber] objectForKey:@"content_id"]);
+    
+    NSLog(@"%@", number);
+
+    if (2 == [number integerValue]) {
+        
+        NSString *stringOfTop = [NSString stringWithFormat: @"http://v20.tp.wkread.com/index.php/Home/Magazine/detail?magazine_id=%@", [_middle[_pageNumber]objectForKey:@"content_id"]];
+        
+        NSDictionary *headerDic2 = @{@"Host":@"v20.tp.wkread.com",
+                                    @"Token": @"CQBLBTDFEQ0UDECA"};
+        
+        [BHNetTool GET:stringOfTop Body:nil HeaderFile:headerDic2 Response:BHJSON Success:^(id result) {
+            
+            self.dataDic = [result objectForKey:@"data"];
+            
+            
+            LCSelectWeiViewController *weiVC = [[LCSelectWeiViewController alloc] init];
+            
+            
+            weiVC.id = [[_dataDic objectForKey:@"magazine"] objectForKey:@"id"];
+            weiVC.name = [NSString stringWithFormat:@"『%@』", [[_dataDic objectForKey:@"magazine"]objectForKey:@"title"]];
+            weiVC.userName = [[_dataDic objectForKey:@"user"] objectForKey:@"nickname"];
+            weiVC.scoreNumber = [NSString stringWithFormat:@"%@", [[_dataDic objectForKey:@"magazine"] objectForKey:@"hot_degree"]];
+            weiVC.subNumber = [NSString stringWithFormat:@"%@", [[_dataDic objectForKey:@"magazine"] objectForKey:@"subscribe_count"]];
+            weiVC.view_count = [NSString stringWithFormat:@"%@", [[_dataDic objectForKey:@"magazine"] objectForKey:@"view_count"]];
+            weiVC.imgURL = [[[_dataDic objectForKey:@"magazine"] objectForKey:@"img_info"] objectForKey:@"src"];
+            
+            weiVC.hidesBottomBarWhenPushed = YES;
+            
+            [[self naviController] pushViewController:weiVC animated:YES];
+
+            
+        } Failure:^(NSError *error) {
+            
+        }];
+       
+    } else if (4 == [number integerValue]) {
+        
+        NSString *stringOfMag = [NSString stringWithFormat: @"http://v20.wkread.com/api.php/special/detail?id=%@", [_middle[_pageNumber]objectForKey:@"content_id"]];
+        
+        NSDictionary *headerDic3 = @{@"Host":@"v20.wkread.com",
+                                     @"Token": @"CQBLBTDFEQ0UDECA"};
+        
+        [BHNetTool GET:stringOfMag Body:nil HeaderFile:headerDic3 Response:BHJSON Success:^(id result) {
+            
+            NSLog(@"%@", result);
+            
+            NSDictionary *magData = [result objectForKey:@"data"];
+            
+            
+            LCSelectMagazineViewController *magVC = [[LCSelectMagazineViewController alloc] init];
+            
+            
+            magVC.id = [[magData objectForKey:@"special"] objectForKey:@"id"];
+            
+            magVC.imgURL = [[[magData objectForKey:@"special"] objectForKey:@"img_info"] objectForKey:@"src"];
+            
+            magVC.describe = [[magData objectForKey:@"special"] objectForKey:@"describe"];
+            
+            magVC.hidesBottomBarWhenPushed = YES;
+            
+            [[self naviController] pushViewController:magVC animated:YES];
+            
+            
+        } Failure:^(NSError *error) {
+            
+        }];
+
+    } else if (3 == [number integerValue]) {
+    
+        NSString *stringOfTop = [NSString stringWithFormat: @"http://v20.tp.wkread.com/index.php/Api/Magazine/articleDetail?id=%@", [_middle[_pageNumber]objectForKey:@"content_id"]];
+        
+        NSDictionary *headerDic2 = @{@"Host":@"v20.tp.wkread.com",
+                                     @"Token": @"CQBLBTDFEQ0UDECA"};
+        
+        [BHNetTool GET:stringOfTop Body:nil HeaderFile:headerDic2 Response:BHJSON Success:^(id result) {
+            
+            self.dataDic = [result objectForKey:@"data"];
+            
+            
+            LCLabraryViewController *labVC = [[LCLabraryViewController alloc] init];
+            
+            labVC.url = [[_dataDic objectForKey:@"article"] objectForKey:@"url"];
+          
+            labVC.hidesBottomBarWhenPushed = YES;
+            
+            [[self naviController] pushViewController:labVC animated:YES];
+            
+            
+        } Failure:^(NSError *error) {
+            
+        }];
+
+    
+    }
+   
+}
+
 
 
 @end

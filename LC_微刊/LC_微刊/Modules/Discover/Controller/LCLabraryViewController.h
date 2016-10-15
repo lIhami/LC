@@ -10,4 +10,6 @@
 
 @interface LCLabraryViewController : UIViewController
 
+@property (nonatomic, copy)NSString *url;
+
 @end

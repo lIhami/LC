@@ -9,8 +9,6 @@
 #import "LCRecommentCollectionViewCell.h"
 #import "LCMacro.h"
 #import "LCSubRecommentOneTableViewCell.h"
-#import "LCSubRecommentTwoTableViewCell.h"
-#import "LCSubRecommentTypeThreeTableViewCell.h"
 #import "News.h"
 #import "UIImageView+WebCache.h"
 #import "LCRecommendNewsViewController.h"
@@ -31,6 +29,8 @@ UITableViewDelegate
 
 @property (nonatomic, copy)NSString *ima_status;
 
+@property (nonatomic, assign)NSInteger count;
+
 @end
 
 @implementation LCRecommentCollectionViewCell
@@ -41,10 +41,14 @@ UITableViewDelegate
     self = [super initWithFrame:frame];
     if (self) {
         
+        self.count = 1;
+        self.newsArray = [NSMutableArray array];
+        
         
         self.recommentTableView = [[UITableView alloc] initWithFrame:self.bounds];
         _recommentTableView.dataSource = self;
         _recommentTableView.delegate = self;
+        _recommentTableView.tag = 1213;
         _recommentTableView.rowHeight = 145.f;
         [self addSubview:_recommentTableView];
         
@@ -57,34 +61,6 @@ UITableViewDelegate
     }
           return self;
 
-}
-
-
-#pragma mark - 网络请求
-- (void)getDataFromJson {
-   
-    NSString *string = @"http://c.m.163.com/nc/article/list/T1348648517839/0-20.html";
-    
-    [BHNetTool GET:string Body:nil HeaderFile:nil Response:BHJSON Success:^(id result) {
-        
-        //        NSLog(@"%@", result);
-        
-        self.newsArray = [NSMutableArray array];
-        
-        NSArray *datasArray = [result objectForKey:@"T1348648517839"];
-        
-        for (NSDictionary *titleDic in datasArray) {
-            News *title = [News newsWithTitleDic:titleDic];
-            [_newsArray addObject:title];
-        }
-        
-        [_recommentTableView reloadData];
-        //        NSLog(@"%ld", _newsArray.count);
-    } Failure:^(NSError *error) {
-        
-    }];
-    
-    
 }
 
 #pragma mark - tableView协议方法
@@ -109,6 +85,68 @@ UITableViewDelegate
     
     return newsCell;
     
+}
+
+
+
+#pragma mark - 网络请求
+- (void)getDataFromJson {
+   
+    NSString *string = @"http://c.m.163.com/nc/article/list/T1348648517839/0-20.html";
+    
+    [BHNetTool GET:string Body:nil HeaderFile:nil Response:BHJSON Success:^(id result) {
+        
+        //        NSLog(@"%@", result);
+        
+        
+        NSArray *datasArray = [result objectForKey:@"T1348648517839"];
+        
+        for (NSDictionary *titleDic in datasArray) {
+            News *title = [News newsWithTitleDic:titleDic];
+            [_newsArray addObject:title];
+        }
+        
+        [_recommentTableView reloadData];
+        //        NSLog(@"%ld", _newsArray.count);
+    } Failure:^(NSError *error) {
+        
+    }];
+    
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    
+    
+    if (1213 == scrollView.tag) {
+        if (scrollView.contentOffset.y < 0) {
+            [self getDataFromJson];
+        } else if (scrollView.contentOffset.y > 145 * (_newsArray.count - 1) - SCREEN_HEIGHT) {
+            NSString *string = [NSString stringWithFormat:@"http://c.m.163.com/nc/article/list/T1348648517839/%ld-20.html", _count * 20];
+            
+            _count++;
+            
+            [BHNetTool GET:string Body:nil HeaderFile:nil Response:BHJSON Success:^(id result) {
+                
+                //        NSLog(@"%@", result);
+                
+                            
+                NSArray *datasArray = [result objectForKey:@"T1348648517839"];
+                
+                for (NSDictionary *titleDic in datasArray) {
+                    News *title = [News newsWithTitleDic:titleDic];
+                    [_newsArray addObject:title];
+                }
+                
+                [_recommentTableView reloadData];
+                        NSLog(@"%ld", _newsArray.count);
+            } Failure:^(NSError *error) {
+                
+            }];
+            
+            
+        }
+    }
 }
 
 
@@ -139,7 +177,6 @@ UITableViewDelegate
    
     [[self naviController] pushViewController:recommendVC animated:YES];
 
-    
     
 
 }

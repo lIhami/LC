@@ -88,6 +88,13 @@ UICollectionViewDelegate
     weiboImageView.image = [UIImage imageNamed:@"微博.png"];
     [self.view addSubview:weiboImageView];
     
+    
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(SCREEN_WIDTH * 0.9, 10, SCREEN_WIDTH * 0.1, SCREEN_WIDTH * 0.1);
+    [backButton addTarget:self action:@selector(backButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [backButton setTitle:@"X" forState:UIControlStateNormal];
+    [self.view addSubview:backButton];
+    
 }
 
 // 顶部标题
@@ -205,7 +212,11 @@ UICollectionViewDelegate
     }
 }
 
+- (void)backButtonAction:(UIButton *)backButton {
 
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

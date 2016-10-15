@@ -15,13 +15,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         self.magRecomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.01, SCREEN_WIDTH * 0.37, SCREEN_WIDTH * 0.365)];
-        _magRecomImageView.image = [UIImage imageNamed:@""];
+        _magRecomImageView.image = [UIImage imageNamed:@"background.png"];
         UIBlurEffect *blurFirst = [ UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         UIVisualEffectView *effectFirstView = [[ UIVisualEffectView alloc] initWithEffect:blurFirst];
-        effectFirstView.frame = CGRectMake(0, 0, SCREEN_WIDTH * 0.365, SCREEN_WIDTH * 0.365);
+        effectFirstView.frame = CGRectMake(SCREEN_WIDTH * 0.005, SCREEN_WIDTH * 0.005, SCREEN_WIDTH * 0.36, SCREEN_WIDTH * 0.355);
         effectFirstView.alpha = 0.4f;
-        //        _magRecomImageView.backgroundColor = [UIColor cyanColor];
         [_magRecomImageView addSubview:effectFirstView];
         [self addSubview:_magRecomImageView];
         
@@ -30,9 +30,9 @@
         _topMagRecomLabel.numberOfLines = 1;
         _topMagRecomLabel.textColor = [UIColor whiteColor];
         _topMagRecomLabel.textAlignment = NSTextAlignmentCenter;
+        _topMagRecomLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
         _topMagRecomLabel.text = @"";
         _topMagRecomLabel.font = [UIFont systemFontOfSize:15];
-        //        _topMagRecomLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.385 blue:0.532 alpha:1.000];
         [self addSubview:_topMagRecomLabel];
         
         
@@ -41,8 +41,8 @@
         _nameLabel.textColor = [UIColor grayColor];
         _nameLabel.font = [UIFont systemFontOfSize:13];
         _nameLabel.text = @"";
-        //        _nameLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.749 blue:0.261 alpha:1.000];
         [self addSubview:_nameLabel];
+        
         
         self.artLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.07, SCREEN_WIDTH * 0.3, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.06)];
         _artLabel.numberOfLines = 1;
@@ -50,8 +50,8 @@
         _artLabel.textAlignment = NSTextAlignmentCenter;
         _artLabel.font = [UIFont systemFontOfSize:11];
         _artLabel.text = @"";
-        //        _artLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.490 blue:0.434 alpha:1.000];
         [self addSubview:_artLabel];
+        
         
         self.subscribeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.23, SCREEN_WIDTH * 0.3, SCREEN_WIDTH * 0.12, SCREEN_WIDTH * 0.06)];
         _subscribeLabel.numberOfLines = 1;
@@ -59,12 +59,12 @@
         _subscribeLabel.font = [UIFont systemFontOfSize:11];
         _subscribeLabel.textAlignment = NSTextAlignmentCenter;
         _subscribeLabel.text = @"";
-        //        _subscribeLabel.backgroundColor = [UIColor colorWithRed:0.763 green:0.406 blue:1.000 alpha:1.000];
         [self addSubview:_subscribeLabel];
         
+        
         self.userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.38, SCREEN_WIDTH * 0.06, SCREEN_WIDTH * 0.06)];
-        _userImageView.image = [UIImage imageNamed:@""];
-        _userImageView.backgroundColor = [UIColor colorWithRed:0.423 green:0.980 blue:1.000 alpha:1.000];
+        _userImageView.image = [UIImage imageNamed:@"background.png"];
+        
         _userImageView.clipsToBounds = YES;
         [self addSubview:_userImageView];
         
@@ -72,6 +72,8 @@
     return self;
 }
 
+
+#pragma mark - set传值
 - (void)setMagRecomImage:(UIImage *)magRecomImage {
     if (_magRecomImage != magRecomImage) {
         _magRecomImage = magRecomImage;

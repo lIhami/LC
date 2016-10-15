@@ -18,7 +18,15 @@
 
 @property (nonatomic, assign)NSInteger subscribe_count;
 
+@property (nonatomic, assign)NSInteger view_count;
+
 @property (nonatomic, strong)NSDictionary *img_info;
+
+@property (nonatomic, strong)NSNumber *id;
+
+@property (nonatomic, strong)NSNumber *s_score;
+
+@property (nonatomic, strong)NSDictionary *user;
 
 + (LCMagazineNew *)magazineWithMagazineDic:(NSDictionary *)magazineDic;
 

@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.taikImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.09, SCREEN_HEIGHT * 0.03, SCREEN_WIDTH * 0.22, SCREEN_WIDTH * 0.22)];
-        _taikImageView.image = [UIImage imageNamed:@""];
+        _taikImageView.image = [UIImage imageNamed:@"background.png"];
         _taikImageView.backgroundColor = [UIColor cyanColor];
         [self addSubview:_taikImageView];
         

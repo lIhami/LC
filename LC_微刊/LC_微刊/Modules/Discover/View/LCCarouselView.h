@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol LCDiscoverCarouselViewDelegate <NSObject>
+
+- (void)deceleratingScrollViewWithPageNumber:(NSInteger)pageNumber;
+
+@end
+
 
 @interface LCCarouselView : UIView
 
+@property (nonatomic, assign)id<LCDiscoverCarouselViewDelegate>delegate;
+
 @property (nonatomic, strong)NSMutableArray *imageArray;
+
+
 
 @end

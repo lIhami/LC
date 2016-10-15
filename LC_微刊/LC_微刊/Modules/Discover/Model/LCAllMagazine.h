@@ -22,6 +22,12 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
+@property (nonatomic, strong)NSNumber *id;
+
+@property (nonatomic, strong)NSDictionary *user;
+
+@property (nonatomic, strong)NSNumber *s_score;
+
 + (LCAllMagazine *)allMagazineWithAllDic:(NSDictionary *)allDic;
 
 @end

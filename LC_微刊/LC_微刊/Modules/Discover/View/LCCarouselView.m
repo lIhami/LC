@@ -129,16 +129,20 @@ UIScrollViewDelegate
         _pageControl.currentPage = pageNumber - 1;
         scrollView.contentOffset = CGPointMake(scrollView.bounds.size.width * pageNumber, 0);
         
+        
         for (UIView *subview in scrollView.subviews) {
             if ([subview isKindOfClass:[LCZoomDisScrollView class]]) {
                 UIScrollView *subScrollView = (UIScrollView *)subview;
                 subScrollView.zoomScale = 1.0f;
             }
         }
+        
         if ([scrollView isEqual:_scrollView]) {
             [self.timer setFireDate:[NSDate dateWithTimeIntervalSinceNow:3.0f]];
         }
+        
     }
+    
 }
 
 
@@ -151,6 +155,9 @@ UIScrollViewDelegate
     
     [_scrollView setContentOffset:CGPointMake((pageNumber + 1) * _scrollView.bounds.size.width, 0) animated:YES];
     _pageControl.currentPage = pageNumber;
+    
+    
+     [self.delegate deceleratingScrollViewWithPageNumber:_pageControl.currentPage];
 }
 
 
@@ -172,5 +179,6 @@ UIScrollViewDelegate
         [_timer setFireDate:[NSDate distantFuture]];
     }
 }
+
 
 @end

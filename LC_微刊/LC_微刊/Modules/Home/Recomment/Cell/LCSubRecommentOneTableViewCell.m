@@ -16,17 +16,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.recommentTypeOneImageView = [[UIImageView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.6, SCREEN_HEIGHT * 0.015, SCREEN_WIDTH * 0.36, SCREEN_WIDTH * 0.295)];
-        _recommentTypeOneImageView.image = [UIImage imageNamed:@""];
-        _recommentTypeOneImageView.backgroundColor = [UIColor cyanColor];
+        _recommentTypeOneImageView.image = [UIImage imageNamed:@"background.png"];
         [self addSubview:_recommentTypeOneImageView];
         
         
         self.recommentTypeOneLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.04, SCREEN_HEIGHT * 0.015, SCREEN_WIDTH * 0.54, SCREEN_WIDTH * 0.17)];
-        //        _recommentTypeOneLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.385 blue:0.532 alpha:1.000];
         _recommentTypeOneLabel.text = @"";
         _recommentTypeOneLabel.numberOfLines = 2;
         _recommentTypeOneLabel.font = [UIFont systemFontOfSize:18];
-        //        _recommentTypeOneLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_recommentTypeOneLabel];
         
         
@@ -34,7 +31,6 @@
         _authorLabel.text = @"";
         _authorLabel.font = [UIFont systemFontOfSize:15];
         _authorLabel.textColor = [UIColor lightGrayColor];
-        //        _authorLabel.backgroundColor = [UIColor colorWithRed:1.000 green:0.195 blue:0.261 alpha:1.000];
         [self addSubview:_authorLabel];
         
     }

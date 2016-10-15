@@ -12,6 +12,7 @@
 #import "LCDiscoverViewController.h"
 #import "LCAllMagazine.h"
 #import "UIImageView+WebCache.h"
+#import "LCSelectWeiViewController.h"
 
 static NSString *const string = @"cell";
 
@@ -44,7 +45,7 @@ UITableViewDelegate
     
     [self getAllMagazineDataFromJson];
     
-    
+    // 创建tableView
     self.listTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT)
                           style:UITableViewStylePlain];
     _listTableView.rowHeight = 145;
@@ -55,12 +56,13 @@ UITableViewDelegate
     
     [_listTableView registerClass:[LCAllMagazineTableViewCell class] forCellReuseIdentifier:string];
     
-    
+    // 顶部导航view
     UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
     topView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:topView];
     
     
+    // 顶部标题
     UILabel *topLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.4, 20, SCREEN_WIDTH * 0.2, 44)];
     topLabel.text = @"排行榜";
     topLabel.textAlignment = NSTextAlignmentCenter;
@@ -68,6 +70,7 @@ UITableViewDelegate
     [self.view addSubview:topLabel];
     
     
+    // 返回按钮
     UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = CGRectMake(10, 25, SCREEN_WIDTH * 0.05, SCREEN_WIDTH * 0.1);
     [backButton setTitle:@"ㄑ" forState:UIControlStateNormal];
@@ -106,6 +109,7 @@ UITableViewDelegate
     }];
     
 }
+
 
 #pragma mark - 返回button点击事件
 - (void)backButtonAction:(UIButton *)backButton {
@@ -178,6 +182,32 @@ UITableViewDelegate
     
     return allMagazine;
 }
+
+
+// tableView点击cell跳转
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    LCAllMagazine *magazine = _allMagazineRankArray[indexPath.row];
+    
+    LCSelectWeiViewController *selectWei = [[LCSelectWeiViewController alloc] init];
+    selectWei.id = magazine.id;
+    
+    selectWei.name = [NSString stringWithFormat:@"『%@』", magazine.title];
+    selectWei.imgURL = [magazine.img_info objectForKey:@"src"];
+    selectWei.userName = [magazine.user objectForKey:@"nickname"];
+    selectWei.view_count = [NSString stringWithFormat:@"%ld", magazine.view_count];
+    selectWei.scoreNumber = [NSString stringWithFormat:@"%@", magazine.s_score];
+    selectWei.subNumber = [NSString stringWithFormat:@"%ld", magazine.subscribe_count];
+    
+    
+    // 隐藏tabbar
+    selectWei.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:selectWei animated:YES];
+    
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

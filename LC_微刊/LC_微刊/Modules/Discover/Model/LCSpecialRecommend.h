@@ -20,6 +20,9 @@
 
 @property (nonatomic, strong)NSDictionary *img_info;
 
+@property (nonatomic, strong)NSNumber *id;
+
+
 + (LCSpecialRecommend *)specialWithSpecialDic:(NSDictionary *)specialDic;
 
 @end

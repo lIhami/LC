@@ -14,6 +14,8 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
+        // 右上角订阅
         self.rightLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.82, SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.15, SCREEN_WIDTH * 0.06)];
         _rightLabel.text = @"+订阅";
         _rightLabel.textAlignment = NSTextAlignmentCenter;

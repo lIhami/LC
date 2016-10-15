@@ -11,6 +11,7 @@
 #import "LCSpecialRecommendCarouselView.h"
 #import "LCMacro.h"
 #import "LCSpecialRecommend.h"
+#import "LCSelectMagazineViewController.h"
 
 @interface LCSpecialRecommendTableViewCell ()
 
@@ -32,6 +33,7 @@ LCSpecialRecommendCarouselViewDelegate
 
 @property (nonatomic, strong)UILabel *subLabel;
 
+
 @end
 
 @implementation LCSpecialRecommendTableViewCell
@@ -50,10 +52,20 @@ LCSpecialRecommendCarouselViewDelegate
         [self addSubview:_carouselView];
         
         
+        // 添加轻拍手势
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
+        
+        [tap setNumberOfTapsRequired:1];
+        [tap setNumberOfTouchesRequired:1];
+        
+        [_carouselView addGestureRecognizer:tap];
+
+        
         
         self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.41, SCREEN_WIDTH * 0.94, SCREEN_WIDTH * 0.08)];
-        _titleLabel.text = @"话题 | #情爱经#";
+        _titleLabel.text = @"话题 | #张靓颖母女撕了#";
         [self addSubview:_titleLabel];
+        
         
         self.descLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.49, SCREEN_WIDTH * 0.94, SCREEN_WIDTH * 0.06)];
         _descLabel.textColor = [UIColor grayColor];
@@ -61,11 +73,13 @@ LCSpecialRecommendCarouselViewDelegate
         _descLabel.font = [UIFont systemFontOfSize:14];
         [self addSubview:_descLabel];
         
+        
         self.artLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.03, SCREEN_WIDTH * 0.55, SCREEN_WIDTH * 0.13, SCREEN_WIDTH * 0.05)];
         _artLabel.textColor = [UIColor grayColor];
         _artLabel.text = @"201文章";
         _artLabel.font = [UIFont systemFontOfSize:12];
         [self addSubview:_artLabel];
+        
         
         self.subLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH * 0.16, SCREEN_WIDTH * 0.55, SCREEN_WIDTH * 0.13, SCREEN_WIDTH * 0.05)];
         _subLabel.text = @"289订阅";
@@ -79,9 +93,9 @@ LCSpecialRecommendCarouselViewDelegate
 }
 
 
+#pragma mark - 协议传值
 - (void)deceleratingScrollViewWithPageNumber:(NSInteger)pageNumber {
     
-    NSLog(@"~~~~%ld", pageNumber);
     
     LCSpecialRecommend *special = _specialArray[pageNumber];
     _titleLabel.text = [NSString stringWithFormat:@"话题 | #%@#", special.name];
@@ -89,8 +103,10 @@ LCSpecialRecommendCarouselViewDelegate
     _artLabel.text = [NSString stringWithFormat:@"%ld文章", special.article_count];
     _subLabel.text = [NSString stringWithFormat:@"%ld订阅", special.subscribe_count];
     
+    self.pageNumber = pageNumber;
     
 }
+
 
 #pragma mark - 网络请求
 - (void)getDataFromJson {
@@ -132,6 +148,43 @@ LCSpecialRecommendCarouselViewDelegate
     
 }
 
+
+#pragma mark - 当前控制器的导航控制器
+- (UINavigationController *)naviController {
+    
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        
+        UIResponder* nextResponder = [next nextResponder];
+        
+        if ([nextResponder isKindOfClass:[UINavigationController class]]) {
+            
+            return (UINavigationController*)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
+// 轻拍跳转
+- (void)tapAction:(UITapGestureRecognizer *)tap {
+
+    NSLog(@"pageNumber : %ld", _pageNumber);
+    
+    LCSpecialRecommend *recommend = _specialArray[_pageNumber];
+    
+    LCSelectMagazineViewController *magVC = [[LCSelectMagazineViewController alloc] init];
+    
+    magVC.id = recommend.id;
+    magVC.name = recommend.name;
+    magVC.describe = recommend.describe;
+    magVC.imgURL = [recommend.img_info objectForKey:@"src"];
+    
+    magVC.hidesBottomBarWhenPushed = YES;
+    
+    [[self naviController] pushViewController:magVC animated:YES];
+
+
+}
 
 
 

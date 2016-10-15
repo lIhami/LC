@@ -20,10 +20,17 @@ UICollectionViewDataSource,
 UICollectionViewDelegate
 >
 
+@property (nonatomic, strong)UICollectionView *discoverCollectionView;
+
 @end
 
 @implementation LCDiscoverViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+
+    [_discoverCollectionView reloadData];
+
+}
 
 
 #pragma mark - 创建底层CollectionView
@@ -36,13 +43,13 @@ UICollectionViewDelegate
     discoverFlowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     discoverFlowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
-    UICollectionView *discoverCollectionView = [[UICollectionView alloc] initWithFrame:SCREEN_RECT collectionViewLayout:discoverFlowLayout];
-    discoverCollectionView.backgroundColor = [UIColor whiteColor];
-    discoverCollectionView.delegate = self;
-    discoverCollectionView.dataSource = self;
-    [self.view addSubview:discoverCollectionView];
+    self.discoverCollectionView = [[UICollectionView alloc] initWithFrame:SCREEN_RECT collectionViewLayout:discoverFlowLayout];
+    _discoverCollectionView.backgroundColor = [UIColor whiteColor];
+    _discoverCollectionView.delegate = self;
+    _discoverCollectionView.dataSource = self;
+    [self.view addSubview:_discoverCollectionView];
     
-    [discoverCollectionView registerClass:[LCDiscoverCollectionViewCell class] forCellWithReuseIdentifier:discoverCell];
+    [_discoverCollectionView registerClass:[LCDiscoverCollectionViewCell class] forCellWithReuseIdentifier:discoverCell];
 }
 
 - (void)viewDidLoad {
@@ -56,16 +63,16 @@ UICollectionViewDelegate
     
    }
 
+
 #pragma mark - collectionView协议方法
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 1;
 }
 
+
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     LCDiscoverCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:discoverCell forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor yellowColor];
-    
     return cell;
     
 }
